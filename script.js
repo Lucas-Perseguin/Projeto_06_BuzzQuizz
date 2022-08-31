@@ -99,7 +99,7 @@ function criarPerguntasQuizz(){
 
 function criarElementoPergunta(numeroPerguntas){
     const perguntaMinimizada = document.createElement('div');
-    const pergunta = document.querySelector('div');
+    const pergunta = document.createElement('div');
     perguntaMinimizada.classList.add(`pergunta-minimizada`);
     perguntaMinimizada.setAttribute('onclik', 'selecionarPerguntaCriacaoQuizz()');
     pergunta.classList.add('pergunta', 'escondido');
