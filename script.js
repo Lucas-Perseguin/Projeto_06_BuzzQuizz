@@ -1,3 +1,14 @@
+/*Tela 1*/
+
+/*Fim da tela 1*/
+
+
+/*Tela 2*/
+
+/*Fim da tela 2*/
+
+
+/*Tela 3*/
 function criarQuizz(){
     const tela_1 = document.querySelector('.tela-1');
     const tela_3 = document.querySelector('.tela-3');
@@ -131,3 +142,4 @@ function criarElementoPergunta(numeroPerguntas){
     local = document.querySelector('.perguntas-criar-quizz');
     local.insertAdjacentElement('beforeend', pergunta);
 }
+/*Fim da tela 3*/
