@@ -1,9 +1,9 @@
 function criarQuizz(){
-    const tela1 = document.querySelector('.tela-1');
-    const tela3 = document.querySelector('.tela-3');
-    tela1.classList.add('escondido');
-    tela3.classList.remove('escondido');
-    tela3.classList.add('display-tela-3');
+    const tela_1 = document.querySelector('.tela-1');
+    const tela_3 = document.querySelector('.tela-3');
+    tela_1.classList.add('escondido');
+    tela_3.classList.remove('escondido');
+    tela_3.classList.add('display-tela-3');
 }
 
 function validarInformacoesQuizz(){
@@ -82,12 +82,12 @@ function validarNiveis(qtdeNiveis){
 }
 
 function criarPerguntasQuizz(){
-    const tela31 = document.querySelector('.tela-3-1');
-    const tela32 = document.querySelector('.tela-3-2');
-    tela31.classList.remove('display-tela-3');
-    tela31.classList.add('escondido');
-    tela32.classList.remove('escondido');
-    tela32.classList.add('display-tela-3');
+    const tela_3_1 = document.querySelector('.tela-3-1');
+    const tela_3_2 = document.querySelector('.tela-3-2');
+    tela_3_1.classList.remove('display-tela-3');
+    tela_3_1.classList.add('escondido');
+    tela_3_2.classList.remove('escondido');
+    tela_3_2.classList.add('display-tela-3');
     const qtdePerguntas = document.getElementById('qtdePerguntasCriarQuizz').value;
     if (qtdePerguntas > 3){
         for (let i = 0; i < qtdePerguntas - 3; i++){
