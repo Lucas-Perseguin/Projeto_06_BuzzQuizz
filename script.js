@@ -1,3 +1,12 @@
+function criarQuizz(){
+    const tela1 = document.querySelector('.tela-1');
+    const tela3 = document.querySelector('.tela-3');
+    tela1.classList.toggle('escondido');
+    tela3.classList.toggle('escondido');
+    tela3.classList.toggle('display-tela-3');
+}
+
+
 function validarInformacoesQuizz(){
     const titulo = document.getElementById('tituloCriarQuizz').value;
     let tituloControle = false;
@@ -52,21 +61,34 @@ function validarUrl(url){
 function validarPerguntas(qtdePerguntas){
     const aviso = document.createElement('alerta');
     if (qtdePerguntas >= 3){
-        qtdePerguntasControle = true;
+        return true;
     }
     else{
         aviso.innerHTML = 'O quizz deve ter no mínimo 3 perguntas'
         document.getElementById('qtdePerguntasCriarQuizz').insertAdjacentElement('afterend', aviso);
+        return false;
     }
 }
 
 function validarNiveis(qtdeNiveis){
     const aviso = document.createElement('alerta');
     if (qtdeNiveis >= 2){
-        qtdeNiveisControle = true;
+        return true;
     }
     else{
         aviso.innerHTML = 'O quizz deve ter no mínimo 2 níveis'
         document.getElementById('qtdeNiveisCriarQuizz').insertAdjacentElement('afterend', aviso);
+        return false;
     }
+}
+
+function criarPerguntasQuizz(){
+    const tela31 = document.querySelector('.tela-3-1');
+    const tela32 = document.querySelector('.tela-3-2');
+    tela31.classList.toggle('display-tela-3');
+    tela31.classList.toggle('escondido');
+    tela32.classList.toggle('escondido');
+    tela32.classList.toggle('display-tela-3');
+    const qtdePerguntas = document.getElementById('qtdePerguntasCriarQuizz').value;
+
 }
