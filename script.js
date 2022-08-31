@@ -7,7 +7,6 @@ function validarInformacoesQuizz(){
     let qtdePerguntasControle = false;
     const qtdeNiveis = document.getElementById('qtdeNiveisCriarQuizz').value;
     let qtdeNiveisControle = false;
-    const aviso = document.createElement('alerta');
     const avisos = document.querySelectorAll('alerta');
 
     if (avisos.length > 0){
@@ -16,17 +15,18 @@ function validarInformacoesQuizz(){
         }
     }
 
-    tituloControle = checarTitulo(titulo, aviso);
-    urlControle = checarUrl(url, aviso);
-    qtdePerguntasControle = checarPerguntas(qtdePerguntas, aviso);
-    qtdeNiveisControle = checarNiveis(qtdeNiveis, aviso);
+    tituloControle = validarTitulo(titulo);
+    urlControle = validarUrl(url);
+    qtdePerguntasControle = validarPerguntas(qtdePerguntas);
+    qtdeNiveisControle = validarNiveis(qtdeNiveis);
     
     if (tituloControle && urlControle && qtdePerguntasControle && qtdeNiveisControle){
         criarPerguntasQuizz();
     }
 }
 
-function checarTitulo(titulo, aviso){
+function validarTitulo(titulo){
+    const aviso = document.createElement('alerta');
     if (titulo.length >= 20 && titulo.length <= 65){
         return true;
     }
@@ -37,7 +37,8 @@ function checarTitulo(titulo, aviso){
     }
 }
 
-function checarUrl(url, aviso){
+function validarUrl(url){
+    const aviso = document.createElement('alerta');
     if (url.checkValidity() && url.value !== ''){
         return true;
     }
@@ -48,7 +49,8 @@ function checarUrl(url, aviso){
     }
 }
 
-function checarPerguntas(qtdePerguntas, aviso){
+function validarPerguntas(qtdePerguntas){
+    const aviso = document.createElement('alerta');
     if (qtdePerguntas >= 3){
         qtdePerguntasControle = true;
     }
@@ -58,7 +60,8 @@ function checarPerguntas(qtdePerguntas, aviso){
     }
 }
 
-function checarNiveis(qtdeNiveis, aviso){
+function validarNiveis(qtdeNiveis){
+    const aviso = document.createElement('alerta');
     if (qtdeNiveis >= 2){
         qtdeNiveisControle = true;
     }
