@@ -296,7 +296,7 @@ alerta{
     color: #EC362D;
     border: none;
 }
-.pergunta{
+.pergunta, .nivel{
     box-sizing: border-box;
     padding: 0 20px;
     text-align: start;
@@ -305,7 +305,7 @@ alerta{
     align-items: flex-start;
     margin-top: 20px;
 }
-.pergunta-minimizada{
+.pergunta-minimizada, .nivel-minimizado{
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
@@ -313,7 +313,7 @@ alerta{
     margin-top: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
-.display-pergunta-minimizada{
+.display-pergunta-minimizada, .display-nivel-minimizado{
     display: flex;
     align-items: center;
     justify-content: space-between;
