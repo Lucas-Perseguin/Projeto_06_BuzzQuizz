@@ -31,7 +31,10 @@ function renderizarQuizzes() {
         `
 
     }
-
+    /**let id = localStorage.getItem(quizzes[i].id)
+     * if (id === null){
+     * }
+     */
 }
 
 /*Fim da tela 1*/
@@ -644,5 +647,6 @@ function telaFinalCriacaoQuizz(quizz){
     document.querySelector('.tela-3-4 h1').insertAdjacentElement('afterend', quizzElemento);
     const botao = document.querySelector('.botao-visualizar');
     botao.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
+    localStorage.setItem(`${quizz.data.id}`, `${quizz.data.id}`);
 }
 // Fim da Tela 3
