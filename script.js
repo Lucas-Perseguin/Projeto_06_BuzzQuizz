@@ -293,7 +293,6 @@ function validarRepostaCorretaPergunta(pergunta){
 }
 
 function validarRespostaIncorretaPergunta(respostaIncorreta){
-    const aviso = document.createElement('alerta');
     if (respostaIncorreta.value !== ''){
         return true;
     }
@@ -303,7 +302,6 @@ function validarRespostaIncorretaPergunta(respostaIncorreta){
 }
 
 function validarUrlPergunta(url){
-    const aviso = document.createElement('alerta');
     if (url.checkValidity() && url.value !== ''){
         return true;
     }
@@ -339,15 +337,123 @@ function criarElementoNivel(numeroNivel){
     const nivel = document.createElement('div');
     nivel.classList.add('nivel', 'escondido');
     nivel.innerHTML = `<h2>Nível ${numeroNivel}</h2>
-    <div>
-        <input type="text" placeholder="Título do nível" class="titulo-nivel">
-        <input type="number" min="0" max="100" placeholder="% de acerto mínimo" class="acerto-nivel">
-        <input type="url" placeholder="URL da imagem do nível" class="url-nivel">
-        <textarea cols="30" rows="10" placeholder="Descrição do nível" class="descricao-nivel"></textarea>
-    </div>`;
+    <input type="text" placeholder="Título do nível" class="titulo-nivel">
+    <input type="number" min="0" max="100" placeholder="% de acerto mínimo" class="acerto-nivel">
+    <input type="url" placeholder="URL da imagem do nível" class="url-nivel">
+    <textarea cols="30" rows="10" placeholder="Descrição do nível" class="descricao-nivel"></textarea>`;
     nivelTodo.appendChild(nivelMinimizado);
     nivelTodo.appendChild(nivel);
     const local = document.querySelector('.niveis-criar-quizz');
     local.insertAdjacentElement('beforeend', nivelTodo);
+}
+
+function selecionarNivelCriacaoQuizz(nivelClicado){
+    const nivelSelecionado = document.querySelector('.nivel-selecionado');
+    if (nivelClicado === nivelSelecionado){
+        return;
+    }
+    toggleNivel(nivelSelecionado);
+    toggleNivel(nivelClicado);
+}
+
+function toggleNivel(nivel){
+    nivel.querySelector('.nivel-minimizado').classList.toggle('escondido');
+    nivel.querySelector('.nivel-minimizado').classList.toggle('display-nivel-minimizado');
+    nivel.querySelector('.nivel').classList.toggle('display-tela-3');
+    nivel.querySelector('.nivel').classList.toggle('escondido');
+    nivel.classList.toggle('nivel-selecionado');
+}
+
+let acertoControle0 = false;
+
+function validarNiveisQuizz(){
+    const qtdeNiveis = document.getElementById('qtdeNiveisCriarQuizz').value;
+    const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
+    let niveisBoolean = false;
+    for (let i = 0; i < niveis.length; i++){
+        niveisBoolean = validarNivelQuizz(niveis[i]);
+        if (!niveisBoolean){
+            alert('Há algo de errado em um de seus níveis, por favor verifique e corrija o erro!');
+            return;
+        }
+    }
+    if (!acertoControle0){
+        alert('Pelo menos um dos níveis tem que ter um acerto mínimo de 0%');
+        return;
+    }
+    finalizarQuizz();
+}
+
+function validarNivelQuizz(nivel){
+    let tituloControle = false;
+    let acertoControle = false;
+    let urlControle = false;
+    let descricaoControle = false;
+    const avisos = document.querySelector('.tela-3-3').querySelectorAll('alerta');
+    if (avisos.length > 0){
+        for (let  i = 0; i < avisos.length; i++){
+            avisos[i].remove();
+        }
+    }
+    tituloControle = validarTituloNivel(nivel);
+    acertoControle = validarAcertoNivel(nivel);
+    urlControle = validarUrlNivel(nivel);
+    descricaoControle = validarDescricaoNivel(nivel);
+    return (tituloControle && acertoControle && urlControle && descricaoControle);
+}
+
+function validarTituloNivel(nivel){
+    const aviso = document.createElement('alerta');
+    if (nivel.querySelector('.titulo-nivel').value.length >= 10){
+        return true;
+    }
+    else{
+        aviso.innerHTML = 'O título do nível tem que conter pelo menos 10 caracteres';
+        nivel.querySelector('.titulo-nivel').insertAdjacentElement('afterend', aviso);
+        return false;
+    }
+}
+
+function validarAcertoNivel(nivel){
+    const aviso = document.createElement('alerta');
+    if (nivel.querySelector('.acerto-nivel').checkValidity() && nivel.querySelector('.acerto-nivel').value !== ''){
+        if (nivel.querySelector('.acerto-nivel').value === '0'){
+            acertoControle0 = true;
+        }
+        return true;
+    }
+    else{
+        aviso.innerHTML = 'O acerto mínimo do nível deve conter um número de 0 a 100';
+        nivel.querySelector('.acerto-nivel').insertAdjacentElement('afterend', aviso);
+        return false;
+    }
+}
+
+function validarUrlNivel(nivel){
+    const aviso = document.createElement('alerta');
+    if (nivel.querySelector('.url-nivel').checkValidity() && nivel.querySelector('.url-nivel').value !== ''){
+        return true;
+    }
+    else{
+        aviso.innerHTML = 'Você deve inserir uma URL válida'
+        nivel.querySelector('.url-nivel').insertAdjacentElement('afterend', aviso);
+        return false;
+    }
+}
+
+function validarDescricaoNivel(nivel){
+    const aviso = document.createElement('alerta');
+    if (nivel.querySelector('textarea').value.length >= 30){
+        return true;
+    }
+    else{
+        aviso.innerHTML = 'A descrição do nível deve ter pelo menos 30 caracteres'
+        nivel.querySelector('textarea').insertAdjacentElement('afterend', aviso);
+        return false;
+    }
+}
+
+function finalizarQuizz(){
+
 }
 // Fim da Tela 3

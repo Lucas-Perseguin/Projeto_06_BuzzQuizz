@@ -304,6 +304,29 @@ alerta{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     align-items: flex-start;
     margin-top: 20px;
+    word-break: break-all;
+}
+.nivel{
+    width: 100%;
+    max-width: 604px;
+}
+.niveis-criar-quizz{
+    max-width: 604px;
+    width: 100%;
+}
+.nivel input{
+    margin-bottom: 14px;
+    width: 100%;
+}
+.nivel textarea{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 2px 14px 20px;
+    border: 1px solid #D1D1D1;
+    font-size: 16px;
+    font-weight: 300;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 .pergunta-minimizada, .nivel-minimizado{
     width: 100%;
@@ -335,8 +358,8 @@ alerta{
     margin: 0;
     width: 360px;
 }
-.tela-3-2 alerta{
-    margin-top: -14px;
+.tela-3-2 alerta, .tela-3-3 alerta{
+    margin-top: -10px;
     margin-bottom: 14px;
 }
 /* Fim da tela 3 */
