@@ -179,7 +179,7 @@ function criarElementoPergunta(numeroPergunta){
     </div>
     <h2>Resposta correta</h2>
     <input type="text" placeholder="Resposta correta" class="resposta-correta">
-    <input type="url" class="url-correta" placeholder="URL da imagem">
+    <input type="url" class="url" placeholder="URL da imagem">
     <h2>Respostas incorretas</h2>
     <div class="respostas-incorretas display-tela-3" class="resposta-incorreta">
         <input type="text" placeholder="Resposta incorreta 1">
@@ -380,6 +380,7 @@ function validarNiveisQuizz(){
             alert('Há algo de errado em um de seus níveis, por favor verifique e corrija o erro!');
             return;
         }
+        console.log('Passou nível');
     }
     if (!acertoControle0){
         alert('Pelo menos um dos níveis tem que ter um acerto mínimo de 0%');
@@ -458,12 +459,14 @@ function validarDescricaoNivel(nivel){
 }
 
 function finalizarQuizz(){
+    console.log('Cheguei antesd a criação do quizz para envio');
     const quizz = {
         title: document.getElementById('tituloCriarQuizz').value,
         image: document.getElementById('urlCriarQuizz').value,
         questions: [],
         levels: []
     };
+    console.log('antes de colocar as perguntas no quizz');
     const perguntas = document.querySelector('.tela-3-2').querySelectorAll('.pergunta');
     for (let i = 0; i < perguntas.length; i++){
         let pergunta = {
@@ -473,21 +476,26 @@ function finalizarQuizz(){
         };
         let respostaCorreta = {
             text: perguntas[i].querySelector('.resposta-correta').value,
-            image: perguntas[i].querySelector('.url-correta').value,
+            image: perguntas[i].querySelector('.url').value,
             isCorrectAnswer: true
         };
         pergunta.answers.push(respostaCorreta);
         let respostasIncorretas = perguntas[i].querySelectorAll('.respostas-incorretas');
-        for (let j = 0; j < respostasIncorretas.length; i++){
-            let respostaIncorreta = {
-                text: respostasIncorretas[j].querySelector('.resposta-incorreta').value,
-                image: respostasIncorretas[j].querySelector('.url').value,
-                isCorrectAnswer: false
-            };
-            pergunta.answers.push(respostaIncorreta);
+        console.log('ants de colocar as respostas incorretas dentro da pergunta');
+        for (let j = 0; j < respostasIncorretas.length; j++){
+            if (respostasIncorretas[j].querySelector('.resposta-incorreta').value !== ''){
+                let respostaIncorreta = {
+                    text: respostasIncorretas[j].querySelector('.resposta-incorreta').value,
+                    image: respostasIncorretas[j].querySelector('.url').value,
+                    isCorrectAnswer: false
+                };
+                console.log('antes de colocar uma resposta incorreta na pergunta');
+                pergunta.answers.push(respostaIncorreta);
+            }
         }
         quizz.questions.push(pergunta);
     }
+    console.log('antes de colocar os niveis no quizz');
     const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
     for (let i = 0; i < niveis.length; i++){
         let nivel = {
@@ -498,6 +506,7 @@ function finalizarQuizz(){
         };
         quizz.levels.push(nivel);
     }
+    console.log('to aqui depois de criar o quizz e anets de mandar ele');
     const post = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
     post.then(telaFinalCriacaoQuizz);
     post.catch(erroEnviarQuizzCriacao);
@@ -509,6 +518,7 @@ function erroEnviarQuizzCriacao(promessa){
 }
 
 function telaFinalCriacaoQuizz(quizz){
+    console.log(quizz);
     const tela_3_4 = document.querySelector('.tela-3-4');
     const tela_3_3 = document.querySelector('.tela-3-3');
     tela_3_4.classList.toggle('escondido');
