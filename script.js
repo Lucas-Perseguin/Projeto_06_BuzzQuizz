@@ -110,7 +110,7 @@ function criarPerguntasQuizz(){
 
 function criarElementoPergunta(numeroPerguntas){
     const perguntaToda = document.createElement('div');
-    perguntaToda.setAttribute('onclik', 'selecionarPerguntaCriacaoQuizz()');
+    perguntaToda.setAttribute('onclick', 'selecionarPerguntaCriacaoQuizz(this)');
     const perguntaMinimizada = document.createElement('div');
     const pergunta = document.createElement('div');
     perguntaMinimizada.classList.add('pergunta-minimizada', 'display-pergunta-minimizada');
@@ -121,20 +121,23 @@ function criarElementoPergunta(numeroPerguntas){
     </svg>`;
     pergunta.innerHTML = `<h2>Pergunta ${numeroPerguntas}</h2>
     <input type="text" placeholder="Texto da pergunta">
-    <input type="text" placeholder="Cor de fundo da pergunta">
+    <div class="escolher-cor">
+        <label for="color">Cor de fundo da pergunta:</label>
+        <input type="color" name="color">
+    </div>
     <h2>Resposta correta</h2>
     <input type="text" placeholder="Resposta correta">
     <input type="url" placeholder="URL da imagem">
     <h2>Respostas incorretas</h2>
-    <div class="resposta-incorreta">
+    <div class="resposta-incorreta display-tela-3">
         <input type="text" placeholder="Resposta incorreta 1">
         <input type="url" placeholder="URL da imagem 1">
     </div>
-    <div class="resposta-incorreta">
+    <div class="resposta-incorreta display-tela-3">
         <input type="text" placeholder="Resposta incorreta 2">
         <input type="url" placeholder="URL da imagem 2">
     </div>
-    <div class="resposta-incorreta">
+    <div class="resposta-incorreta display-tela-3">
         <input type="text" placeholder="Resposta incorreta 3">
         <input type="url" placeholder="URL da imagem 3">
     </div>`;
@@ -159,5 +162,9 @@ function togglePergunta(pergunta){
     pergunta.querySelector('.pergunta').classList.toggle('display-tela-3');
     pergunta.querySelector('.pergunta').classList.toggle('escondido');
     pergunta.classList.toggle('pergunta-selecionada');
+}
+
+function validarPerguntasQuizz(){
+    const qtdePerguntas = document.getElementById('qtdePerguntasCriarQuizz').value;
 }
 /*Fim da tela 3*/
