@@ -162,7 +162,9 @@ function criarElementoPergunta(numeroPergunta){
     const perguntaToda = document.createElement('div');
     perguntaToda.setAttribute('onclick', 'selecionarPerguntaCriacaoQuizz(this)');
     const perguntaMinimizada = document.createElement('div');
+    perguntaMinimizada.setAttribute('data-identifier', 'expand');
     const pergunta = document.createElement('div');
+    pergunta.setAttribute('data-identifier', 'question-form');
     perguntaMinimizada.classList.add('pergunta-minimizada', 'display-pergunta-minimizada');
     pergunta.classList.add('pergunta', 'escondido');
     perguntaMinimizada.innerHTML = `<h2>Pergunta ${numeroPergunta}</h2>
@@ -329,6 +331,7 @@ function criarElementoNivel(numeroNivel){
     const nivelTodo = document.createElement('div');
     nivelTodo.setAttribute('onclick', 'selecionarNivelCriacaoQuizz(this)');
     const nivelMinimizado = document.createElement('div');
+    nivelMinimizado.setAttribute('data-identifier', 'expand');
     nivelMinimizado.classList.add('nivel-minimizado', 'display-nivel-minimizado');
     nivelMinimizado.innerHTML = `<h2>Nível ${numeroNivel}</h2>
     <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -336,6 +339,7 @@ function criarElementoNivel(numeroNivel){
     </svg>`;
     const nivel = document.createElement('div');
     nivel.classList.add('nivel', 'escondido');
+    nivel.setAttribute('data-identifier', 'level');
     nivel.innerHTML = `<h2>Nível ${numeroNivel}</h2>
     <input type="text" placeholder="Título do nível" class="titulo-nivel">
     <input type="number" min="0" max="100" placeholder="% de acerto mínimo" class="acerto-nivel">
@@ -505,6 +509,20 @@ function erroEnviarQuizzCriacao(promessa){
 }
 
 function telaFinalCriacaoQuizz(quizz){
-    
+    const tela_3_4 = document.querySelector('.tela-3-4');
+    const tela_3_3 = document.querySelector('.tela-3-3');
+    tela_3_4.classList.toggle('escondido');
+    tela_3_4.classList.toggle('display-tela-3');
+    tela_3_3.classList.toggle('display-tela-3');
+    tela_3_3.classList.toggle('escondido');
+    const quizzElemento = document.createElement('div');
+    quizzElemento.setAttribute('data-identifier', 'quizz-card');
+    quizzElemento.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
+    quizzElemento.classList.add('quizz');
+    quizzElemento.innerHTML = `<img src="${quizz.data.image}">
+    <p>${quizz.data.title}</p>`;
+    document.querySelector('.tela-3-4 h1').insertAdjacentElement('afterend', quizzElemento);
+    const botao = document.querySelector('.botao-visualizar');
+    botao.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
 }
 // Fim da Tela 3
