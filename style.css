@@ -223,23 +223,31 @@
 }
 .tela-3{
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     overflow-y: scroll;
-    text-align: center;
 }
 .tela-3-1, .tela-3-2, .tela-3-3, .tela-3-4{
     margin-top: 73px;
     background-color: #E5E5E5;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     flex-shrink: 1;
 }
-.tela-3-1 > h1{
-    height: 89px;
-    line-height: 89px;
+.tela-3 h1{
+    height: 90px;
+    line-height: 90px;
     font-weight: 700;
-    font-size: 23px;
+    font-size: 24px;
     color: #000000;
+}
+.tela-3 h2{
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 14px;
+    margin-top: 20px;
 }
 .informacoes-criar-quizz{
     display: flex;
@@ -247,11 +255,10 @@
     background: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     padding: 20px;
-    margin-bottom: 85px;
     box-sizing: border-box;
     gap: 9px;
 }
-.informacoes-criar-quizz input{
+.tela-3 input{
     border: 1px solid #D1D1D1;
     width: 564px;
     height: 46px;
@@ -266,10 +273,12 @@
     height: 64px;
     background-color: #EC362D;
     color: #FFF5F4;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 400;
     border: none;
     border-radius: 20px;
+    margin-top: 85px;
+    margin-bottom: 200px;
 }
 alerta{
     text-align: start;
@@ -277,6 +286,45 @@ alerta{
     font-size: 16px;
     color: #EC362D;
     border: none;
+}
+.pergunta{
+    box-sizing: border-box;
+    padding: 0 20px;
+    text-align: start;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.pergunta-minimizada{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #FFFFFF;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.display-pergunta-minimizada{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tela-3-2 input{
+    margin-bottom: 14px;
+}
+.resposta-incorreta{
+    margin-bottom: 20px;
+}
+.escolher-cor{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.escolher-cor input{
+    padding: 0;
+    margin: 0;
+    width: 360px;
 }
 /* Fim da tela 3 */
 
