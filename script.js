@@ -177,7 +177,7 @@ function criarElementoPergunta(numeroPergunta){
     </div>
     <h2>Resposta correta</h2>
     <input type="text" placeholder="Resposta correta" class="resposta-correta">
-    <input type="url" class="url" placeholder="URL da imagem">
+    <input type="url" class="url-correta" placeholder="URL da imagem">
     <h2>Respostas incorretas</h2>
     <div class="respostas-incorretas display-tela-3" class="resposta-incorreta">
         <input type="text" placeholder="Resposta incorreta 1">
@@ -454,6 +454,57 @@ function validarDescricaoNivel(nivel){
 }
 
 function finalizarQuizz(){
+    const quizz = {
+        title: document.getElementById('tituloCriarQuizz').value,
+        image: document.getElementById('urlCriarQuizz').value,
+        questions: [],
+        levels: []
+    };
+    const perguntas = document.querySelector('.tela-3-2').querySelectorAll('.pergunta');
+    for (let i = 0; i < perguntas.length; i++){
+        let pergunta = {
+            title: perguntas[i].querySelector('.texto-pergunta').value,
+            color: perguntas[i].querySelector('.escolher-cor >:nth-child(2)').value,
+            answers: []
+        };
+        let respostaCorreta = {
+            text: perguntas[i].querySelector('.resposta-correta').value,
+            image: perguntas[i].querySelector('.url-correta').value,
+            isCorrectAnswer: true
+        };
+        pergunta.answers.push(respostaCorreta);
+        let respostasIncorretas = perguntas[i].querySelectorAll('.respostas-incorretas');
+        for (let j = 0; j < respostasIncorretas.length; i++){
+            let respostaIncorreta = {
+                text: respostasIncorretas[j].querySelector('.resposta-incorreta').value,
+                image: respostasIncorretas[j].querySelector('.url').value,
+                isCorrectAnswer: false
+            };
+            pergunta.answers.push(respostaIncorreta);
+        }
+        quizz.questions.push(pergunta);
+    }
+    const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
+    for (let i = 0; i < niveis.length; i++){
+        let nivel = {
+            title: niveis[i].querySelector('.titulo-nivel').value,
+            image: niveis[i].querySelector('.url-nivel').value,
+            text: niveis[i].querySelector('.descricao-nivel').value,
+            minValue: Number(niveis[i].querySelector('.acerto-nivel').value)
+        };
+        quizz.levels.push(nivel);
+    }
+    const post = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
+    post.then(telaFinalCriacaoQuizz());
+    post.catch(erroEnviarQuizzCriacao());
+}
 
+function erroEnviarQuizzCriacao(promessa){
+    alert('Houve um erro no envio do Quizz, tente novamente');
+    return;
+}
+
+function telaFinalCriacaoQuizz(quizz){
+    
 }
 // Fim da Tela 3
