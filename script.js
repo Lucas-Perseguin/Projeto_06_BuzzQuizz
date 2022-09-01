@@ -3,9 +3,18 @@
 /*Fim da tela 1*/
 
 
-/*Tela 2*/
+/*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/
 
-/*Fim da tela 2*/
+/* function telaQuizz(){
+
+    const primeiratela = document.querySelector('.tela-1');
+    const segundatela = document.querySelector('.tela-2');
+    primeiratela.classList.add('escondido');
+    segundatela.classList.remove('escondido');
+    segundatela.classList.add('display-tela-3');
+} */
+
+/*----------------------------------------------------------------------Fim da tela 2--------------------------------------------------------------------------*/
 
 
 /*Tela 3*/
