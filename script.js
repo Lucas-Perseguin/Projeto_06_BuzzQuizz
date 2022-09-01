@@ -1,11 +1,61 @@
 /*Tela 1*/
 
+let quizzes = [];
+let idQuizzSelecionado = '';
+
+function carregarQuizzes (){
+
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    promessa.then(quizzesChegaram);
+}
+
+carregarQuizzes();
+
+function quizzesChegaram(resposta){
+    quizzes = resposta.data;
+    renderizarQuizzes();
+}
+
+function renderizarQuizzes (){
+
+    const todosQuizzes = document.querySelector(".quizzes");
+
+    for(let i = 0; i < quizzes.length; i++){
+        todosQuizzes.innerHTML += `
+    
+        <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
+            <img src="${quizzes[i].image}">
+            <p>${quizzes[i].title}</p>
+        </div>
+        
+        `
+        
+    }
+
+}
+
+function selecionarQuizz(id){
+ console.log(id)
+}
+
+
+
+
 /*Fim da tela 1*/
 
 
-/*Tela 2*/
+/*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/
 
-/*Fim da tela 2*/
+/* function telaQuizz(){
+
+    const primeiratela = document.querySelector('.tela-1');
+    const segundatela = document.querySelector('.tela-2');
+    primeiratela.classList.add('escondido');
+    segundatela.classList.remove('escondido');
+    segundatela.classList.add('display-tela-3');
+} */
+
+/*----------------------------------------------------------------------Fim da tela 2--------------------------------------------------------------------------*/
 
 
 /*Tela 3*/
@@ -265,4 +315,5 @@ function validarUrlPergunta(url){
 function criarNiveisQuizz(){
 
 }
-/*Fim da tela 3*/
+
+// Fim da Tela 3

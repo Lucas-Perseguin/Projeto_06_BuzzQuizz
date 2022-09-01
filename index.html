@@ -23,17 +23,17 @@
         <div class="criar-quizz escondido">
             <div class="criar-quizz-box">
                 <p>Você não criou nenhum <br> quizz ainda :(</p>
-                <button onclick="criarQuizz()">Criar Quizz</button>
+                <button data-identifier="create-quizz" onclick="criarQuizz()">Criar Quizz</button>
             </div>
         </div>
 
-        <div class="seus-quizzes">
+        <div data-identifier="user-quizzes" class="seus-quizzes">
             <div class="titulo-seus-quizzes">
                 <p>Seus Quizzes</p>
-                <ion-icon class="icone-criar-quizz" name="add-circle" onclick="criarQuizz()"></ion-icon>
+                <ion-icon  data-identifier="create-quizz" class="icone-criar-quizz" name="add-circle" onclick="criarQuizz()"></ion-icon>
             </div>
             <div class="lista-quizzes-usuario">
-                <div class="quizz">
+                <div data-identifier="quizz-card" class="quizz">
                     <p>Acerte os personagens e prove o seu amor</p>
                 </div>
                 <div class="quizz">
@@ -42,28 +42,11 @@
             </div>
         </div>
 
-        <div class="todos-quizzes">
+        <div data-identifier="general-quizzes" class="todos-quizzes">
             <p class="titulo-todos-quizzes">Todos os Quizzes</p>
 
             <div class="quizzes">
-                <div class="quizz">
-                    <p>Acerte os personagens e prove o seu amor</p>
-                </div>
-                <div class="quizz">
-                    <p>Acerte os personagens e prove o seu amor</p>
-                </div>
-                <div class="quizz">
-                    <p>Acerte os personagens e prove o seu amor</p>
-                </div>
-                <div class="quizz">
-                    <p>Acerte os personagens e prove o seu amor</p>
-                </div>
-                <div class="quizz">
-                    <p>Acerte os personagens e prove o seu amor</p>
-                </div>
-                <div class="quizz">
-                    <p>Acerte os personagens e prove o seu amor</p>
-                </div>
+                
             </div>
         </div>
 
@@ -71,9 +54,39 @@
     <!-- Fim da Tela 1 ------------------------------------------------------------------------------->
 
 
-    <!--Tela 2-->
+    <!----------------------------------------------------------------Tela 2------------------------------------------------------------------------------->
+    <div class="escondido">
+        <div class="tela-2">
+            <div class="topoTela2 ">
+                <img src="img/Os-Simpsons.jpg">
+            </div>
+            <div class="conteudoQuizz">
+                <div class="tituloperguntaQuizz">
+                    <h2>Isso é uma pergunta teste?</h2>
+                </div>
+                <div class="containerFotoTextoQuizz">
+                    <div class="foto-texto">
+                        <img src="img/Os-Simpsons.jpg">
+                        <h2>gato</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="img/Os-Simpsons.jpg">
+                        <h2>boi</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="img/Os-Simpsons.jpg">
+                        <h2>cobra</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="img/Os-Simpsons.jpg">
+                        <h2>esquilo</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!--Fim da Tela 2-->
+    <!----------------------------------------------------------------Fim da Tela 2--------------------------------------------------------------------->
 
 
     <!--Tela 3-->
@@ -195,7 +208,7 @@
     </div>
     <!--Fim da Tela 3-->
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="script.js"></script>
