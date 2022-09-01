@@ -51,7 +51,7 @@ function selecionarQuizz(id) {
 function quizzCerto(valor) {
     conteudoPagina2 = document.querySelector('.conteudoTela2')
     Quizz = valor.data;
-    if (Quizz.questions.length === 2); {
+    if (Quizz.questions.length === 2){
         conteudoPagina2.innerHTML += `
         <div class="topoTela2 ">
             <img src="img/Os-Simpsons.jpg">
@@ -69,6 +69,74 @@ function quizzCerto(valor) {
                     <img src="img/Os-Simpsons.jpg">
                     <h2>boi</h2>
                 </div>
+        </div>
+            
+            `
+        const primeiratela = document.querySelector('.tela-1');
+        const segundatela = document.querySelector('.conteudoTela2');
+        primeiratela.classList.add('escondido');
+        segundatela.classList.remove('escondido');
+        segundatela.classList.add('tela-2');
+    } else if(Quizz.questions.length === 3){
+        conteudoPagina2.innerHTML += `
+        <div class="topoTela2 ">
+            <img src="img/Os-Simpsons.jpg">
+        </div>
+        <div class="conteudoQuizz">
+            <div class="tituloperguntaQuizz">
+                <h2>Isso é uma pergunta teste?</h2>
+            </div>
+            <div class="containerFotoTextoQuizz">
+                <div class="foto-texto">
+                    <img src="img/Os-Simpsons.jpg">
+                    <h2>gato</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="img/Os-Simpsons.jpg">
+                    <h2>boi</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="img/Os-Simpsons.jpg">
+                    <h2>boi</h2>
+                </div>
+            </div>
+                
+        </div>
+            
+            `
+        const primeiratela = document.querySelector('.tela-1');
+        const segundatela = document.querySelector('.conteudoTela2');
+        primeiratela.classList.add('escondido');
+        segundatela.classList.remove('escondido');
+        segundatela.classList.add('tela-2');
+    } else if(Quizz.questions.lenght === 4){
+        conteudoPagina2.innerHTML += `
+        <div class="topoTela2 ">
+            <img src="img/${a}Os-Simpsons.jpg">
+        </div>
+        <div class="conteudoQuizz">
+            <div class="tituloperguntaQuizz">
+                <h2>${}Isso é uma pergunta teste?</h2>
+            </div>
+            <div class="containerFotoTextoQuizz">
+                <div class="foto-texto">
+                    <img src="${}img/Os-Simpsons.jpg">
+                    <h2>${}gato</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="${}img/Os-Simpsons.jpg">
+                    <h2>${}boi</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="${}img/Os-Simpsons.jpg">
+                    <h2>${}boi</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="${}img/Os-Simpsons.jpg">
+                    <h2>${Quizz.}</h2>
+                </div>
+            </div>
+                
         </div>
             
             `
