@@ -110,13 +110,13 @@ function quizzCerto(valor) {
         segundatela.classList.remove('escondido');
         segundatela.classList.add('tela-2');
     } else if(Quizz.questions.lenght === 4){
-        conteudoPagina2.innerHTML += `
+        /* conteudoPagina2.innerHTML += `
         <div class="topoTela2 ">
-            <img src="img/${a}Os-Simpsons.jpg">
+            <img src="img/${Quizz.title}Os-Simpsons.jpg">
         </div>
         <div class="conteudoQuizz">
             <div class="tituloperguntaQuizz">
-                <h2>${}Isso é uma pergunta teste?</h2>
+                <h2>${Quizz.image}Isso é uma pergunta teste?</h2>
             </div>
             <div class="containerFotoTextoQuizz">
                 <div class="foto-texto">
@@ -139,7 +139,7 @@ function quizzCerto(valor) {
                 
         </div>
             
-            `
+            ` */
         const primeiratela = document.querySelector('.tela-1');
         const segundatela = document.querySelector('.conteudoTela2');
         primeiratela.classList.add('escondido');
