@@ -495,8 +495,8 @@ function finalizarQuizz(){
         quizz.levels.push(nivel);
     }
     const post = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
-    post.then(telaFinalCriacaoQuizz());
-    post.catch(erroEnviarQuizzCriacao());
+    post.then(telaFinalCriacaoQuizz);
+    post.catch(erroEnviarQuizzCriacao);
 }
 
 function erroEnviarQuizzCriacao(promessa){
