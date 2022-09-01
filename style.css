@@ -238,7 +238,7 @@ alerta{
 .tela-3-2 input{
     margin-bottom: 14px;
 }
-.resposta-incorreta{
+.respostas-incorretas{
     margin-bottom: 20px;
 }
 .escolher-cor{
@@ -251,6 +251,10 @@ alerta{
     padding: 0;
     margin: 0;
     width: 360px;
+}
+.tela-3-2 alerta{
+    margin-top: -14px;
+    margin-bottom: 14px;
 }
 /* Fim da tela 3 */
 

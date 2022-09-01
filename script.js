@@ -26,7 +26,7 @@ function validarInformacoesQuizz(){
     let qtdePerguntasControle = false;
     const qtdeNiveis = document.getElementById('qtdeNiveisCriarQuizz').value;
     let qtdeNiveisControle = false;
-    const avisos = document.querySelectorAll('alerta');
+    const avisos = document.querySelector('.tela-3-1').querySelectorAll('alerta');
 
     if (avisos.length > 0){
         for (let  i = 0; i < avisos.length; i++){
@@ -120,26 +120,26 @@ function criarElementoPergunta(numeroPerguntas){
         <path d="M18.1594 15.4969L19.6038 14.0594C19.8295 13.8348 20.2222 13.992 20.2222 14.3155V20.8471C20.2222 22.0375 19.2517 23.0034 18.0556 23.0034H2.16667C0.970486 23.0034 0 22.0375 0 20.8471V5.03462C0 3.84419 0.970486 2.87837 2.16667 2.87837H14.5122C14.8326 2.87837 14.9951 3.2647 14.7694 3.4938L13.325 4.9313C13.2573 4.99868 13.167 5.03462 13.0677 5.03462H2.16667V20.8471H18.0556V15.7485C18.0556 15.6542 18.0917 15.5643 18.1594 15.4969ZM25.2281 6.43169L13.3747 18.2282L9.2941 18.6774C8.11146 18.8077 7.10486 17.8149 7.23576 16.629L7.68715 12.568L19.5406 0.771533C20.5743 -0.257178 22.2444 -0.257178 23.2736 0.771533L25.2236 2.71216C26.2573 3.74087 26.2573 5.40747 25.2281 6.43169ZM20.7684 7.81978L18.1458 5.20981L9.75903 13.5608L9.42951 16.4942L12.3771 16.1663L20.7684 7.81978ZM23.6934 4.2395L21.7434 2.29888C21.5583 2.1147 21.2559 2.1147 21.0753 2.29888L19.6806 3.68696L22.3031 6.29692L23.6979 4.90884C23.8785 4.72017 23.8785 4.42368 23.6934 4.2395Z" fill="black"/>
     </svg>`;
     pergunta.innerHTML = `<h2>Pergunta ${numeroPerguntas}</h2>
-    <input type="text" placeholder="Texto da pergunta">
+    <input type="text" placeholder="Texto da pergunta" class="texto-pergunta">
     <div class="escolher-cor">
         <label for="color">Cor de fundo da pergunta:</label>
         <input type="color" name="color">
     </div>
     <h2>Resposta correta</h2>
-    <input type="text" placeholder="Resposta correta">
-    <input type="url" placeholder="URL da imagem">
+    <input type="text" placeholder="Resposta correta" class="resposta-correta">
+    <input type="url" class="url" placeholder="URL da imagem">
     <h2>Respostas incorretas</h2>
-    <div class="resposta-incorreta display-tela-3">
+    <div class="respostas-incorretas display-tela-3" class="resposta-incorreta">
         <input type="text" placeholder="Resposta incorreta 1">
-        <input type="url" placeholder="URL da imagem 1">
+        <input type="url" class="url" placeholder="URL da imagem 1">
     </div>
-    <div class="resposta-incorreta display-tela-3">
+    <div class="respostas-incorretas display-tela-3" class="resposta-incorreta">
         <input type="text" placeholder="Resposta incorreta 2">
-        <input type="url" placeholder="URL da imagem 2">
+        <input type="url" class="url" placeholder="URL da imagem 2">
     </div>
-    <div class="resposta-incorreta display-tela-3">
+    <div class="respostas-incorretas display-tela-3" class="resposta-incorreta">
         <input type="text" placeholder="Resposta incorreta 3">
-        <input type="url" placeholder="URL da imagem 3">
+        <input type="url" class="url" placeholder="URL da imagem 3">
     </div>`;
     perguntaToda.appendChild(perguntaMinimizada);
     perguntaToda.appendChild(pergunta);
@@ -166,5 +166,103 @@ function togglePergunta(pergunta){
 
 function validarPerguntasQuizz(){
     const qtdePerguntas = document.getElementById('qtdePerguntasCriarQuizz').value;
+    const perguntas = document.querySelectorAll('.tela-3-2 .pergunta');
+    let perguntasBoolean = false;
+    for (let i = 0; i < perguntas.length; i++){
+        perguntasBoolean = validarPerguntaQuizz(perguntas[i]);
+        if (!perguntasBoolean){
+            alert('Há algo de errado em uma de suas perguntas, por favor verifique e corrija o erro!');
+            return;
+        }
+    }
+    criarNiveisQuizz();
+}
+
+function validarPerguntaQuizz(pergunta){
+    let textoPerguntaControle = false;
+    let respostaCorretaControle = false;
+    let respostaIncorretaControle = [false, false, false];
+    let urlControle = [false, false, false, false];
+    const urlTodas = pergunta.querySelectorAll('.url');
+    const respostasIncorretasTodas = pergunta.querySelectorAll('.resposta-incorreta');
+    const avisos = document.querySelector('.tela-3-2').querySelectorAll('alerta');
+    if (avisos.length > 0){
+        for (let  i = 0; i < avisos.length; i++){
+            avisos[i].remove();
+        }
+    }
+    textoPerguntaControle = validarTextoPergunta(pergunta);
+    respostaCorretaControle = validarRepostaCorretaPergunta(pergunta);
+    for (let i = 0; i < respostaIncorretaControle.length; i++){
+        respostaIncorretaControle[i] = validarRespostaIncorretaPergunta(respostasIncorretasTodas[i]);
+    }
+    for (let i = 0; i < urlControle.length; i++){
+        urlControle[i] = validarUrlPergunta(urlTodas[i]);
+    }
+    if (!textoPerguntaControle || !(respostaCorretaControle && urlControle[0])){
+        alert('Você deve inserir uma resposta correta válida e um texto para cada pergunta');
+        return false;
+    }
+    else if (!(respostaIncorretaControle[0] && urlControle[1])){
+        alert('Você deve inserir pelo menos uma resposta incorreta em cada pergunta');
+        return false;
+    }
+    else{
+        for (let  i = 1, j = 2; i < respostaIncorretaControle.length; i++, j++){
+            if ((!respostaIncorretaControle[i] && urlControle[j]) || (respostaIncorretaControle[i] && !urlControle[j])){
+                return false;
+            }
+        }
+        console.log(`passou por pergunta`);
+        return true;
+    }
+}
+
+function validarTextoPergunta(pergunta){
+    const aviso = document.createElement('alerta');
+    if (pergunta.querySelector('.texto-pergunta').value.length >= 20){
+        return true;
+    }
+    else{
+        aviso.innerHTML = 'O texto da pergunta deve conter pelo menos 20 letras';
+        pergunta.querySelector('.texto-pergunta').insertAdjacentElement('afterend', aviso);
+        return false;
+    }
+}
+
+function validarRepostaCorretaPergunta(pergunta){
+    const aviso = document.createElement('alerta');
+    if (pergunta.querySelector('.resposta-correta').value !== ''){
+        return true;
+    }
+    else{
+        aviso.innerHTML = 'A pergunta deve ter uma resposta correta válida';
+        pergunta.querySelector('.resposta-correta').insertAdjacentElement('afterend', aviso);
+        return false;
+    }
+}
+
+function validarRespostaIncorretaPergunta(respostaIncorreta){
+    const aviso = document.createElement('alerta');
+    if (respostaIncorreta.value !== ''){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function validarUrlPergunta(url){
+    const aviso = document.createElement('alerta');
+    if (url.checkValidity() && url.value !== ''){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function criarNiveisQuizz(){
+
 }
 /*Fim da tela 3*/
