@@ -1,5 +1,46 @@
 /*Tela 1*/
 
+let quizzes = [];
+let idQuizzSelecionado = '';
+
+function carregarQuizzes (){
+
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    promessa.then(quizzesChegaram);
+}
+
+carregarQuizzes();
+
+function quizzesChegaram(resposta){
+    quizzes = resposta.data;
+    renderizarQuizzes();
+}
+
+function renderizarQuizzes (){
+
+    const todosQuizzes = document.querySelector(".quizzes");
+
+    for(let i = 0; i < quizzes.length; i++){
+        todosQuizzes.innerHTML += `
+    
+        <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
+            <img src="${quizzes[i].image}">
+            <p>${quizzes[i].title}</p>
+        </div>
+        
+        `
+        
+    }
+
+}
+
+function selecionarQuizz(id){
+ console.log(id)
+}
+
+
+
+
 /*Fim da tela 1*/
 
 /*tela 2
@@ -142,4 +183,5 @@ function criarElementoPergunta(numeroPerguntas){
     local = document.querySelector('.perguntas-criar-quizz');
     local.insertAdjacentElement('beforeend', pergunta);
 }
-/*Fim da tela 3*/
+
+// Fim da Tela 3
