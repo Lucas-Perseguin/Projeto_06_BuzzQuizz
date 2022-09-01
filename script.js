@@ -568,12 +568,8 @@ function validarDescricaoNivel(nivel) {
     }
 }
 
-<<<<<<< HEAD
-function finalizarQuizz() {
-=======
 function finalizarQuizz(){
     console.log('Cheguei antesd a criação do quizz para envio');
->>>>>>> bcbfe2a95c09eb6ab553342c15f276443055df76
     const quizz = {
         title: document.getElementById('tituloCriarQuizz').value,
         image: document.getElementById('urlCriarQuizz').value,
@@ -595,15 +591,6 @@ function finalizarQuizz(){
         };
         pergunta.answers.push(respostaCorreta);
         let respostasIncorretas = perguntas[i].querySelectorAll('.respostas-incorretas');
-<<<<<<< HEAD
-        for (let j = 0; j < respostasIncorretas.length; i++) {
-            let respostaIncorreta = {
-                text: respostasIncorretas[j].querySelector('.resposta-incorreta').value,
-                image: respostasIncorretas[j].querySelector('.url').value,
-                isCorrectAnswer: false
-            };
-            pergunta.answers.push(respostaIncorreta);
-=======
         console.log('ants de colocar as respostas incorretas dentro da pergunta');
         for (let j = 0; j < respostasIncorretas.length; j++){
             if (respostasIncorretas[j].querySelector('.resposta-incorreta').value !== ''){
@@ -615,7 +602,6 @@ function finalizarQuizz(){
                 console.log('antes de colocar uma resposta incorreta na pergunta');
                 pergunta.answers.push(respostaIncorreta);
             }
->>>>>>> bcbfe2a95c09eb6ab553342c15f276443055df76
         }
         quizz.questions.push(pergunta);
     }
@@ -641,10 +627,6 @@ function erroEnviarQuizzCriacao(promessa) {
     return;
 }
 
-<<<<<<< HEAD
-function telaFinalCriacaoQuizz(quizz) {
-
-=======
 function telaFinalCriacaoQuizz(quizz){
     console.log(quizz);
     const tela_3_4 = document.querySelector('.tela-3-4');
@@ -662,6 +644,5 @@ function telaFinalCriacaoQuizz(quizz){
     document.querySelector('.tela-3-4 h1').insertAdjacentElement('afterend', quizzElemento);
     const botao = document.querySelector('.botao-visualizar');
     botao.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
->>>>>>> bcbfe2a95c09eb6ab553342c15f276443055df76
 }
 // Fim da Tela 3
