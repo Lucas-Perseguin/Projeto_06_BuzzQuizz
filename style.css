@@ -241,6 +241,7 @@
 .tituloperguntaQuizz > h2{
     font-size: 21px;
     color: white;
+    word-break: break-all;
 }
 
 .containerFotoTextoQuizz{
