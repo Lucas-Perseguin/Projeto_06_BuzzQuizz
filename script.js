@@ -80,7 +80,7 @@ function quizzCerto(valor) {
     <h1>${Quizz.title}</h1>
 </div>
     `
-    for (let i = 0; Quizz.questions.length; i++) {
+    for (let i = 0; i < Quizz.questions.length; i++) {
         if (Quizz.questions[i].answers.length === 2){
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
