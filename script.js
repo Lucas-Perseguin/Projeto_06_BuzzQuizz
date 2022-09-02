@@ -136,7 +136,8 @@ function quizzCerto(valor) {
     } else if(Quizz.questions.lenght === 4){
         /* conteudoPagina2.innerHTML += `
         <div class="topoTela2 ">
-            <img src="img/${Quizz.title}Os-Simpsons.jpg">
+            <img src="${Quizz.image}">
+            <h1>${Quizz.title}</h1>
         </div>
         <div class="conteudoQuizz">
             <div class="tituloperguntaQuizz">
@@ -144,8 +145,8 @@ function quizzCerto(valor) {
             </div>
             <div class="containerFotoTextoQuizz">
                 <div class="foto-texto">
-                    <img src="${}img/Os-Simpsons.jpg">
-                    <h2>${}gato</h2>
+                    <img src="${Quizz.questions[0].answers[0].image}">
+                    <h2>${Quizz.questions[0].answers[0].text}gato</h2>
                 </div>
                 <div class="foto-texto">
                     <img src="${}img/Os-Simpsons.jpg">

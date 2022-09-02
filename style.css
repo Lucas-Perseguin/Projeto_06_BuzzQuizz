@@ -168,16 +168,30 @@
 }
 
 .topoTela2{
+    display: flex;
+    position: relative;
     width: 100%;
     height: 227px;
     background-color: aqua;
     margin-bottom: 42px;
+    justify-content: center;
+    align-items: center;
 }
 
 .topoTela2 > img{
     width: 100%;
     height: 100%;
     filter: grayscale(60%);
+}
+
+.topoTela2 > h1{
+    position: absolute;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    color: #FFFFFF;
 }
 
 .conteudoQuizz{
