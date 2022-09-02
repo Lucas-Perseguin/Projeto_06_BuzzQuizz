@@ -80,11 +80,11 @@ function quizzCerto(valor) {
     <h1>${Quizz.title}</h1>
 </div>
     `
-    for (i = 0; Quizz.questions.length; i++) {
+    for (let i = 0; Quizz.questions.length; i++) {
         if (Quizz.questions[i].answers.length === 2){
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
-                <div class="tituloperguntaQuizz">
+                <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
@@ -104,7 +104,7 @@ function quizzCerto(valor) {
         } else if (Quizz.questions[i].answers.length === 3) {
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
-                <div class="tituloperguntaQuizz">
+                <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}>
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
@@ -126,7 +126,7 @@ function quizzCerto(valor) {
                 `
         } else if (Quizz.questions[i].answers.length === 4) {
             conteudoPagina2.innerHTML += `
-            <div class="conteudoQuizz">
+            <div class="conteudoQuizz" style="background-color:${Quizz.questions[i].color}>
                 <div class="tituloperguntaQuizz">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
@@ -154,8 +154,6 @@ function quizzCerto(valor) {
                 `
 
         }
-        const backgroundtitle = document.querySelector('.tituloperguntaQuizz');
-        backgroundtitle.style.backgroundColor = `${Quizz.questions[i].color}`
         const primeiratela = document.querySelector('.tela-1');
         const segundatela = document.querySelector('.conteudoTela2');
         primeiratela.classList.add('escondido');
