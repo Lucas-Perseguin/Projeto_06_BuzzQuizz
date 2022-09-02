@@ -93,7 +93,7 @@ function quizzCerto(valor) {
                         <h2>${Quizz.questions[i].answers[0].text}</h2>
                     </div>
                     <div class="foto-texto">
-                        <img src="${Quizz.questions[i].answers[1].image}}">
+                        <img src="${Quizz.questions[i].answers[1].image}">
                         <h2>${Quizz.questions[i].answers[1].text}</h2>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ function quizzCerto(valor) {
                         <h2>${Quizz.questions[i].answers[0].text}</h2>
                     </div>
                     <div class="foto-texto">
-                        <img src="${Quizz.questions[i].answers[1].image}}">
+                        <img src="${Quizz.questions[i].answers[1].image}">
                         <h2>${Quizz.questions[i].answers[1].text}</h2>
                     </div>
                     <div class="foto-texto">
@@ -157,6 +157,7 @@ function quizzCerto(valor) {
         const primeiratela = document.querySelector('.tela-1');
         const segundatela = document.querySelector('.conteudoTela2');
         primeiratela.classList.add('escondido');
+        primeiratela.classList.remove('display-tela-1');
         segundatela.classList.remove('escondido');
         segundatela.classList.add('tela-2');
     }
