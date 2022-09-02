@@ -1,7 +1,6 @@
 /*Tela 1*/
 
 let quizzes = [];
-let idQuizzSelecionado = '';
 
 function carregarQuizzes() {
 
@@ -19,22 +18,44 @@ function quizzesChegaram(resposta) {
 function renderizarQuizzes() {
 
     const todosQuizzes = document.querySelector(".quizzes");
+    const boxCriarQuizzes = document.querySelector(".criar-quizz");
+    const seusQuizzes = document.querySelector(".seus-quizzes");
+
+    let id = localStorage.getItem('idQuizzUser');
+    const idQuizUser = JSON.parse(id);
+
 
     for (let i = 0; i < quizzes.length; i++) {
-        todosQuizzes.innerHTML += `
-    
-        <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
-            <img src="${quizzes[i].image}">
-            <p>${quizzes[i].title}</p>
-        </div>
+
+        if(quizzes[i].id === idQuizUser){
+            boxCriarQuizzes.classList.add("escondido");
+            seusQuizzes.classList.remove("escondido");
+
+            const listaQuizzesUser = document.querySelector(".lista-quizzes-usuario");
+            listaQuizzesUser.innerHTML += `
+            
+            <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
+                <img src="${quizzes[i].image}">
+                <p>${quizzes[i].title}</p>
+            </div>
+            
+            `
+        } 
         
-        `
+        if(quizzes[i].id !== idQuizUser){
+
+            todosQuizzes.innerHTML += `
+    
+            <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
+                <img src="${quizzes[i].image}">
+                <p>${quizzes[i].title}</p>
+            </div>
+            
+            `
+        }
+       
 
     }
-    /**let id = localStorage.getItem(quizzes[i].id)
-     * if (id === null){
-     * }
-     */
 }
 
 /*Fim da tela 1*/
@@ -647,6 +668,10 @@ function telaFinalCriacaoQuizz(quizz){
     document.querySelector('.tela-3-4 h1').insertAdjacentElement('afterend', quizzElemento);
     const botao = document.querySelector('.botao-visualizar');
     botao.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
-    localStorage.setItem(`${quizz.data.id}`, `${quizz.data.id}`);
+
+
+    let id = quizz.data.id;
+    const idString = JSON.stringify(id);
+    localStorage.setItem(`idQuizzUser`, idString);
 }
 // Fim da Tela 3
