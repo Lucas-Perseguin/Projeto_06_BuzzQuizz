@@ -166,15 +166,6 @@ function quizzCerto(valor) {
             segundatela.classList.add('tela-2');
         }
     }
-
-    /*  conteudoPagina2 = document.querySelector('.conteudoTela2')
-            
-        const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2'); */
-    console.log(valor.data);
 }
 
 function quizzError(valor) {
