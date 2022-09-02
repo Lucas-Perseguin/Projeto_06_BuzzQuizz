@@ -379,6 +379,9 @@ alerta{
     margin-top: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
+.pergunta-minimizada:hover, .nivel-minimizado:hover{
+    cursor: pointer;
+}
 .display-pergunta-minimizada, .display-nivel-minimizado{
     display: flex;
     align-items: center;
