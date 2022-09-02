@@ -168,6 +168,8 @@
 }
 
 .topoTela2{
+    margin-top: 69px;
+    z-index: -1;
     display: flex;
     position: relative;
     width: 100%;
