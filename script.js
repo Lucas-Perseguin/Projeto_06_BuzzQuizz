@@ -486,6 +486,7 @@ function toggleNivel(nivel) {
 }
 
 let acertoControle0 = false;
+let acertosControleIgualdadeArray = [];
 
 function validarNiveisQuizz() {
     const qtdeNiveis = document.getElementById('qtdeNiveisCriarQuizz').value;
@@ -501,6 +502,10 @@ function validarNiveisQuizz() {
     }
     if (!acertoControle0) {
         alert('Pelo menos um dos níveis tem que ter um acerto mínimo de 0%');
+        return;
+    }
+    if (acertosControleIgualdadeArray.length !== new Set(acertosControleIgualdadeArray).size){
+        alert('Não pode haver níveis com % de acerto mínimo iguais');
         return;
     }
     finalizarQuizz();
@@ -542,6 +547,7 @@ function validarAcertoNivel(nivel) {
         if (nivel.querySelector('.acerto-nivel').value === '0') {
             acertoControle0 = true;
         }
+        acertosControleIgualdadeArray.push(nivel.querySelector('.acerto-nivel').value);
         return true;
     }
     else {
