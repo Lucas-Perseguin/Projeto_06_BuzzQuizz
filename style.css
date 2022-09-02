@@ -236,12 +236,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .tituloperguntaQuizz > h2{
     font-size: 21px;
     color: white;
-    word-break: break-all;
+    
 }
 
 .containerFotoTextoQuizz{
@@ -267,6 +268,7 @@
     height: 20%;
     display: flex;
     align-items: center;
+    word-break: break-all;
 }
 
 /*-------------------------------------------------------------------------Fim da tela 2 -----------------------------------------------------------------------*/
