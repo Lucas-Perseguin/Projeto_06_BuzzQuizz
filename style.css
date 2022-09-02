@@ -74,6 +74,10 @@
     margin-top: 20px;
 }
 
+.criar-quizz-box button:hover{
+    cursor: pointer;
+}
+
 .todos-quizzes{
     width: 1051px;
     margin: 60px auto 100px auto;
@@ -155,6 +159,10 @@
 .icone-criar-quizz{
     font-size: 30px;
     color: #EC362D;
+}
+
+.icone-criar-quizz:hover{
+    cursor: pointer;
 }
 
 .lista-quizzes-usuario{
