@@ -84,6 +84,7 @@ function quizzCerto(valor) {
     Quizz = valor.data;
     conteudoPagina2 = document.querySelector('.conteudoTela2')
     conteudoPagina2.innerHTML += `            <div class="topoTela2 ">
+    <div class="opaco"></div>
     <img src="${Quizz.image}">
     <h1>${Quizz.title}</h1>
 </div>
@@ -166,12 +167,10 @@ function quizzCerto(valor) {
     }
 }
 
-function selecionarPergunta(){
-    const numeroPerguntas = document.querySelectorAll('.conteudoTela2 .conteudoQuizz').lenght;
-        for(let i = 0; i < numeroPerguntas; i++){
+function selecionado(){
+/*     const certaResposta = Quizz.questions[]
+    const caixa = querySelector('.foto-texto'); */
 
-        }
-    console.log(numeroPerguntas)
 }
 
 function quizzError(valor) {
