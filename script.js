@@ -27,7 +27,7 @@ function renderizarQuizzes() {
 
     for (let i = 0; i < quizzes.length; i++) {
 
-        if(quizzes[i].id === idQuizUser){
+        if (quizzes[i].id === idQuizUser) {
             boxCriarQuizzes.classList.add("escondido");
             seusQuizzes.classList.remove("escondido");
 
@@ -40,9 +40,9 @@ function renderizarQuizzes() {
             </div>
             
             `
-        } 
-        
-        if(quizzes[i].id !== idQuizUser){
+        }
+
+        if (quizzes[i].id !== idQuizUser) {
 
             todosQuizzes.innerHTML += `
     
@@ -53,7 +53,7 @@ function renderizarQuizzes() {
             
             `
         }
-       
+
 
     }
 }
@@ -69,102 +69,102 @@ function selecionarQuizz(id) {
     const pegarQuizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
     pegarQuizz.then(quizzCerto);
     pegarQuizz.catch(quizzError);
-    console.log();
+    console.log(id);
 }
 
 function quizzCerto(valor) {
     conteudoPagina2 = document.querySelector('.conteudoTela2')
     Quizz = valor.data;
-    if (Quizz.questions.length === 2){
+    if (Quizz.questions[0].answers.length === 2) {
         conteudoPagina2.innerHTML += `
-        <div class="topoTela2 ">
-            <img src="img/Os-Simpsons.jpg">
-        </div>
-        <div class="conteudoQuizz">
-            <div class="tituloperguntaQuizz">
-                <h2>Isso é uma pergunta teste?</h2>
-            </div>
-            <div class="containerFotoTextoQuizz">
-                <div class="foto-texto">
-                    <img src="img/Os-Simpsons.jpg">
-                    <h2>gato</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="img/Os-Simpsons.jpg">
-                    <h2>boi</h2>
-                </div>
-        </div>
-            
-            `
-        const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2');
-    } else if(Quizz.questions.length === 3){
-        conteudoPagina2.innerHTML += `
-        <div class="topoTela2 ">
-            <img src="img/Os-Simpsons.jpg">
-        </div>
-        <div class="conteudoQuizz">
-            <div class="tituloperguntaQuizz">
-                <h2>Isso é uma pergunta teste?</h2>
-            </div>
-            <div class="containerFotoTextoQuizz">
-                <div class="foto-texto">
-                    <img src="img/Os-Simpsons.jpg">
-                    <h2>gato</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="img/Os-Simpsons.jpg">
-                    <h2>boi</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="img/Os-Simpsons.jpg">
-                    <h2>boi</h2>
-                </div>
-            </div>
-                
-        </div>
-            
-            `
-        const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2');
-    } else if(Quizz.questions.lenght === 4){
-        /* conteudoPagina2.innerHTML += `
         <div class="topoTela2 ">
             <img src="${Quizz.image}">
             <h1>${Quizz.title}</h1>
         </div>
         <div class="conteudoQuizz">
             <div class="tituloperguntaQuizz">
-                <h2>${Quizz.image}Isso é uma pergunta teste?</h2>
+                <h2>${Quizz.questions[0].title}</h2>
             </div>
             <div class="containerFotoTextoQuizz">
                 <div class="foto-texto">
                     <img src="${Quizz.questions[0].answers[0].image}">
-                    <h2>${Quizz.questions[0].answers[0].text}gato</h2>
+                    <h2>${Quizz.questions[0].answers[0].text}</h2>
                 </div>
                 <div class="foto-texto">
-                    <img src="${}img/Os-Simpsons.jpg">
-                    <h2>${}boi</h2>
+                    <img src="${Quizz.questions[0].answers[1].image}}">
+                    <h2>${Quizz.questions[0].answers[1].text}</h2>
+                </div>
+        </div>
+            
+            `
+        const primeiratela = document.querySelector('.tela-1');
+        const segundatela = document.querySelector('.conteudoTela2');
+        primeiratela.classList.add('escondido');
+        segundatela.classList.remove('escondido');
+        segundatela.classList.add('tela-2');
+    } else if (Quizz.questions[0].answers.length === 3) {
+        conteudoPagina2.innerHTML += `
+        <div class="topoTela2 ">
+            <img src="${Quizz.image}">
+            <h1>${Quizz.title}</h1>
+        </div>
+        <div class="conteudoQuizz">
+            <div class="tituloperguntaQuizz">
+                <h2>${Quizz.questions[0].title}</h2>
+            </div>
+            <div class="containerFotoTextoQuizz">
+                <div class="foto-texto">
+                    <img src="${Quizz.questions[0].answers[0].image}">
+                    <h2>${Quizz.questions[0].answers[0].text}</h2>
                 </div>
                 <div class="foto-texto">
-                    <img src="${}img/Os-Simpsons.jpg">
-                    <h2>${}boi</h2>
+                    <img src="${Quizz.questions[0].answers[1].image}">
+                    <h2>${Quizz.questions[0].answers[1].text}</h2>
                 </div>
                 <div class="foto-texto">
-                    <img src="${}img/Os-Simpsons.jpg">
-                    <h2>${Quizz.}</h2>
+                    <img src="${Quizz.questions[0].answers[2].image}">
+                    <h2>${Quizz.questions[0].answers[2].text}</h2>
+                </div>
+        </div>
+            
+            `
+        const primeiratela = document.querySelector('.tela-1');
+        const segundatela = document.querySelector('.conteudoTela2');
+        primeiratela.classList.add('escondido');
+        segundatela.classList.remove('escondido');
+        segundatela.classList.add('tela-2');
+    } else if (Quizz.questions[0].answers.length === 4) {
+        conteudoPagina2.innerHTML += `
+        <div class="topoTela2 ">
+            <img src="${Quizz.image}">
+            <h1>${Quizz.title}</h1>
+        </div>
+        <div class="conteudoQuizz">
+            <div class="tituloperguntaQuizz">
+                <h2>${Quizz.questions[0].title}</h2>
+            </div>
+            <div class="containerFotoTextoQuizz">
+                <div class="foto-texto">
+                    <img src="${Quizz.questions[0].answers[0].image}">
+                    <h2>${Quizz.questions[0].answers[0].text}</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="${Quizz.questions[0].answers[1].image}}">
+                    <h2>${Quizz.questions[0].answers[1].text}</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="${Quizz.questions[0].answers[2].image}">
+                    <h2>${Quizz.questions[0].answers[2].text}</h2>
+                </div>
+                <div class="foto-texto">
+                    <img src="${Quizz.questions[0].answers[3].image}">
+                    <h2>${Quizz.questions[0].answers[3].text}</h2>
                 </div>
             </div>
                 
         </div>
             
-            ` */
+            `
         const primeiratela = document.querySelector('.tela-1');
         const segundatela = document.querySelector('.conteudoTela2');
         primeiratela.classList.add('escondido');
@@ -593,7 +593,7 @@ function validarDescricaoNivel(nivel) {
     }
 }
 
-function finalizarQuizz(){
+function finalizarQuizz() {
     console.log('Cheguei antesd a criação do quizz para envio');
     const quizz = {
         title: document.getElementById('tituloCriarQuizz').value,
@@ -617,8 +617,8 @@ function finalizarQuizz(){
         pergunta.answers.push(respostaCorreta);
         let respostasIncorretas = perguntas[i].querySelectorAll('.respostas-incorretas');
         console.log('ants de colocar as respostas incorretas dentro da pergunta');
-        for (let j = 0; j < respostasIncorretas.length; j++){
-            if (respostasIncorretas[j].querySelector('.resposta-incorreta').value !== ''){
+        for (let j = 0; j < respostasIncorretas.length; j++) {
+            if (respostasIncorretas[j].querySelector('.resposta-incorreta').value !== '') {
                 let respostaIncorreta = {
                     text: respostasIncorretas[j].querySelector('.resposta-incorreta').value,
                     image: respostasIncorretas[j].querySelector('.url').value,
@@ -652,7 +652,7 @@ function erroEnviarQuizzCriacao(promessa) {
     return;
 }
 
-function telaFinalCriacaoQuizz(quizz){
+function telaFinalCriacaoQuizz(quizz) {
     console.log(quizz);
     const tela_3_4 = document.querySelector('.tela-3-4');
     const tela_3_3 = document.querySelector('.tela-3-3');
