@@ -104,6 +104,7 @@
     box-sizing: border-box;
     position: relative;
     background-color: black;
+    word-break: break-all;
 }
 
 .quizz:hover{
