@@ -28,6 +28,10 @@
     height: 43px;
 }
 
+.topo img:hover{
+    cursor: pointer;
+}
+
 .tela-1{
     background-color: #FAFAFA;
 }
@@ -96,6 +100,15 @@
     box-sizing: border-box;
     position: relative;
     background-color: black;
+}
+
+.quizz:hover{
+    box-shadow:  -4px 4px 6px #000000;
+    cursor: pointer;
+}
+
+.quizz:hover p{
+    text-decoration: underline;
 }
 
 .quizz img{
@@ -299,7 +312,7 @@
     font-weight: 300;
     border-radius: 8px;
 }
-.tela-3 button{
+.tela-3-1 button, .tela-3-2 button, .tela-3-3 button{
     width: 370px;
     height: 64px;
     background-color: #EC362D;
@@ -383,6 +396,37 @@ alerta{
 .tela-3-2 alerta, .tela-3-3 alerta{
     margin-top: -10px;
     margin-bottom: 14px;
+}
+.tela-3-4 .quizz{
+    width: 500px;
+    height: 266px;
+}
+.botao-visualizar{
+    margin-top: 45px;
+    margin-bottom: 10px;
+    width: 220px;
+    height: 46px;
+    background-color: #EC362D;
+    color: #FFF5F4;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    border-radius: 20px;
+}
+.botao-voltar-home{
+    color: #818181;
+    text-align: center;
+    background: none;
+    width: 220px;
+    height: 46px;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+}
+.tela-3 button:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 /* Fim da tela 3 */
 

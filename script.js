@@ -198,6 +198,7 @@ function criarQuizz() {
     const tela_1 = document.querySelector('.tela-1');
     const tela_3 = document.querySelector('.tela-3');
     tela_1.classList.toggle('escondido');
+    tela_1.classList.toggle('display-tela-1');
     tela_3.classList.toggle('escondido');
     tela_3.classList.toggle('display-tela-3');
 }
@@ -664,11 +665,35 @@ function telaFinalCriacaoQuizz(quizz) {
     <p>${quizz.data.title}</p>`;
     document.querySelector('.tela-3-4 h1').insertAdjacentElement('afterend', quizzElemento);
     const botao = document.querySelector('.botao-visualizar');
-    botao.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
+    botao.setAttribute('onclick', `selecionarQuizzCriado(${quizz.data.id})`);
 
 
     let id = quizz.data.id;
     const idString = JSON.stringify(id);
     localStorage.setItem(`idQuizzUser`, idString);
+}
+
+function selecionarQuizzCriado(id){
+    const tela_2 = document.querySelector('.conteudoTela2');
+    const tela_3_4 = document.querySelector('.tela-3-4');
+    tela_3_4.classList.toggle('escondido');
+    tela_3_4.classList.toggle('display-tela-3');
+    tela_2.classList.toggle('tela-2');
+    tela_2.classList.toggle('escondido');
+    selecionarQuizz(id);
+}
+
+function resetarTelaInicial(){
+    const quizzes = document.querySelectorAll('.quizz');
+    for (let i = 0; i < quizzes.length; i++){
+        quizzes[i].remove();
+    }
+    const tela_1 = document.querySelector('.tela-1');
+    const tela_3_4 = document.querySelector('.tela-3-4');
+    tela_3_4.classList.toggle('escondido');
+    tela_3_4.classList.toggle('display-tela-3');
+    tela_1.classList.toggle('display-tela-1');
+    tela_1.classList.toggle('escondido');
+    carregarQuizzes();
 }
 // Fim da Tela 3
