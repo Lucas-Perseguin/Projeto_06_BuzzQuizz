@@ -64,6 +64,7 @@ function renderizarQuizzes() {
 /*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/
 let conteudoPagina2;
 let Quizz;
+let segundaTela;
 
 function selecionarQuizz(id) {
     const pegarQuizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
@@ -88,11 +89,11 @@ function quizzCerto(valor) {
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[0].image}">
                         <h2>${Quizz.questions[i].answers[0].text}</h2>
                     </div>
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[1].image}">
                         <h2>${Quizz.questions[i].answers[1].text}</h2>
                     </div>
@@ -108,15 +109,15 @@ function quizzCerto(valor) {
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[0].image}">
                         <h2>${Quizz.questions[i].answers[0].text}</h2>
                     </div>
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[1].image}">
                         <h2>${Quizz.questions[i].answers[1].text}</h2>
                     </div>
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[2].image}">
                         <h2>${Quizz.questions[i].answers[2].text}</h2>
                     </div>
@@ -131,19 +132,19 @@ function quizzCerto(valor) {
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[0].image}">
                         <h2>${Quizz.questions[i].answers[0].text}</h2>
                     </div>
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[1].image}">
                         <h2>${Quizz.questions[i].answers[1].text}</h2>
                     </div>
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[2].image}">
                         <h2>${Quizz.questions[i].answers[2].text}</h2>
                     </div>
-                    <div class="foto-texto">
+                    <div class="foto-texto" onclick="selecionado(this)">
                         <img src="${Quizz.questions[i].answers[3].image}">
                         <h2>${Quizz.questions[i].answers[3].text}</h2>
                     </div>
@@ -154,12 +155,20 @@ function quizzCerto(valor) {
 
         }
         const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
+        segundaTela = document.querySelector('.conteudoTela2');
         primeiratela.classList.add('escondido');
         primeiratela.classList.remove('display-tela-1');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2');
+        segundaTela.classList.remove('escondido');
+        segundaTela.classList.add('tela-2');
     }
+}
+
+function selecionarPergunta(){
+    const numeroPerguntas = document.querySelectorAll('.conteudoTela2 .conteudoQuizz').lenght;
+        for(let i = 0; i < numeroPerguntas; i++){
+
+        }
+    console.log(numeroPerguntas)
 }
 
 function quizzError(valor) {
