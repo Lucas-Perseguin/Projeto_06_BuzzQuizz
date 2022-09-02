@@ -104,7 +104,7 @@ function quizzCerto(valor) {
         } else if (Quizz.questions[i].answers.length === 3) {
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
-                <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}>
+                <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
@@ -126,8 +126,8 @@ function quizzCerto(valor) {
                 `
         } else if (Quizz.questions[i].answers.length === 4) {
             conteudoPagina2.innerHTML += `
-            <div class="conteudoQuizz" style="background-color:${Quizz.questions[i].color}>
-                <div class="tituloperguntaQuizz">
+            <div class="conteudoQuizz">
+                <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
                 <div class="containerFotoTextoQuizz">
@@ -148,7 +148,6 @@ function quizzCerto(valor) {
                         <h2>${Quizz.questions[i].answers[3].text}</h2>
                     </div>
                 </div>
-                    
             </div>
                 
                 `
