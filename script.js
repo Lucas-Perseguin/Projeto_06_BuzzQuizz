@@ -491,6 +491,8 @@ let acertoControle0 = false;
 let acertosControleIgualdadeArray = [];
 
 function validarNiveisQuizz() {
+    acertoControle0 = false;
+    acertosControleIgualdadeArray = [];
     const qtdeNiveis = document.getElementById('qtdeNiveisCriarQuizz').value;
     const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
     let niveisBoolean = false;
