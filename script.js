@@ -1,14 +1,15 @@
 /*Tela 1*/
 
+carregarQuizzes();
+
 let quizzes = [];
 
 function carregarQuizzes() {
-
+    toggleTela1();
+    toggleCarregamento('Carregando quizzes...');
     const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
     promessa.then(quizzesChegaram);
 }
-
-carregarQuizzes();
 
 function quizzesChegaram(resposta) {
     quizzes = resposta.data;
@@ -34,7 +35,7 @@ function renderizarQuizzes() {
             const listaQuizzesUser = document.querySelector(".lista-quizzes-usuario");
             listaQuizzesUser.innerHTML += `
             
-            <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
+            <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id}, ${toggleTela1})">
                 <img src="${quizzes[i].image}">
                 <p>${quizzes[i].title}</p>
             </div>
@@ -46,7 +47,7 @@ function renderizarQuizzes() {
 
             todosQuizzes.innerHTML += `
     
-            <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id})">
+            <div "data-identifier="quizz-card" class="quizz" onclick="selecionarQuizz(${quizzes[i].id}, ${toggleTela1})">
                 <img src="${quizzes[i].image}">
                 <p>${quizzes[i].title}</p>
             </div>
@@ -56,6 +57,8 @@ function renderizarQuizzes() {
 
 
     }
+    toggleCarregamento(null);
+    toggleTela1();
 }
 
 /*Fim da tela 1*/
@@ -66,7 +69,11 @@ let conteudoPagina2;
 let Quizz;
 let segundaTela;
 
-function selecionarQuizz(id) {
+function selecionarQuizz(id, telaDesrenderizar) {
+    if (telaDesrenderizar !== null){
+        telaDesrenderizar();
+    }
+    toggleCarregamento('Carregando quizz...');
     const pegarQuizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
     pegarQuizz.then(quizzCerto);
     pegarQuizz.catch(quizzError);
@@ -154,12 +161,8 @@ function quizzCerto(valor) {
                 `
 
         }
-        const primeiratela = document.querySelector('.tela-1');
-        segundaTela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        primeiratela.classList.remove('display-tela-1');
-        segundaTela.classList.remove('escondido');
-        segundaTela.classList.add('tela-2');
+        toggleCarregamento(null)
+        toggleTela2();
     }
 }
 
@@ -174,16 +177,6 @@ function selecionarPergunta(){
 function quizzError(valor) {
     console.log('deu ruim');
 }
-
-/* function telaQuizz(){
-
-    const primeiratela = document.querySelector('.tela-1');
-    const segundatela = document.querySelector('.tela-2');
-    primeiratela.classList.add('escondido');
-    segundatela.classList.remove('escondido');
-    segundatela.classList.add('display-tela-3');
-} */
-
 /*----------------------------------------------------------------------Fim da tela 2--------------------------------------------------------------------------*/
 
 
@@ -591,14 +584,12 @@ function validarDescricaoNivel(nivel) {
 }
 
 function finalizarQuizz() {
-    console.log('Cheguei antesd a criação do quizz para envio');
     const quizz = {
         title: document.getElementById('tituloCriarQuizz').value,
         image: document.getElementById('urlCriarQuizz').value,
         questions: [],
         levels: []
     };
-    console.log('antes de colocar as perguntas no quizz');
     const perguntas = document.querySelector('.tela-3-2').querySelectorAll('.pergunta');
     for (let i = 0; i < perguntas.length; i++) {
         let pergunta = {
@@ -613,7 +604,6 @@ function finalizarQuizz() {
         };
         pergunta.answers.push(respostaCorreta);
         let respostasIncorretas = perguntas[i].querySelectorAll('.respostas-incorretas');
-        console.log('ants de colocar as respostas incorretas dentro da pergunta');
         for (let j = 0; j < respostasIncorretas.length; j++) {
             if (respostasIncorretas[j].querySelector('.resposta-incorreta').value !== '') {
                 let respostaIncorreta = {
@@ -621,13 +611,11 @@ function finalizarQuizz() {
                     image: respostasIncorretas[j].querySelector('.url').value,
                     isCorrectAnswer: false
                 };
-                console.log('antes de colocar uma resposta incorreta na pergunta');
                 pergunta.answers.push(respostaIncorreta);
             }
         }
         quizz.questions.push(pergunta);
     }
-    console.log('antes de colocar os niveis no quizz');
     const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
     for (let i = 0; i < niveis.length; i++) {
         let nivel = {
@@ -638,7 +626,7 @@ function finalizarQuizz() {
         };
         quizz.levels.push(nivel);
     }
-    console.log('to aqui depois de criar o quizz e anets de mandar ele');
+    toggleCarregamento('Criando quizz...');
     const post = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
     post.then(telaFinalCriacaoQuizz);
     post.catch(erroEnviarQuizzCriacao);
@@ -650,7 +638,7 @@ function erroEnviarQuizzCriacao(promessa) {
 }
 
 function telaFinalCriacaoQuizz(quizz) {
-    console.log(quizz);
+    toggleCarregamento(null);
     const tela_3_4 = document.querySelector('.tela-3-4');
     const tela_3_3 = document.querySelector('.tela-3-3');
     tela_3_4.classList.toggle('escondido');
@@ -659,7 +647,7 @@ function telaFinalCriacaoQuizz(quizz) {
     tela_3_3.classList.toggle('escondido');
     const quizzElemento = document.createElement('div');
     quizzElemento.setAttribute('data-identifier', 'quizz-card');
-    quizzElemento.setAttribute('onclick', `selecionarQuizz(${quizz.data.id})`);
+    quizzElemento.setAttribute('onclick', `selecionarQuizzCriado(${quizz.data.id})`);
     quizzElemento.classList.add('quizz');
     quizzElemento.innerHTML = `<img src="${quizz.data.image}">
     <p>${quizz.data.title}</p>`;
@@ -674,13 +662,13 @@ function telaFinalCriacaoQuizz(quizz) {
 }
 
 function selecionarQuizzCriado(id){
-    const tela_2 = document.querySelector('.conteudoTela2');
     const tela_3_4 = document.querySelector('.tela-3-4');
+    const tela_3_1 = document.querySelector('.tela-3-1');
     tela_3_4.classList.toggle('escondido');
     tela_3_4.classList.toggle('display-tela-3');
-    tela_2.classList.toggle('tela-2');
-    tela_2.classList.toggle('escondido');
-    selecionarQuizz(id);
+    tela_3_1.classList.toggle('escondido');
+    tela_3_1.classList.toggle('display-tela-3');
+    selecionarQuizz(id, toggleTela3);
 }
 
 function resetarTelaInicial(){
@@ -690,10 +678,42 @@ function resetarTelaInicial(){
     }
     const tela_1 = document.querySelector('.tela-1');
     const tela_3_4 = document.querySelector('.tela-3-4');
+    const tela_3_1 = document.querySelector('.tela-3-1');
     tela_3_4.classList.toggle('escondido');
     tela_3_4.classList.toggle('display-tela-3');
+    tela_3_1.classList.toggle('escondido');
+    tela_3_1.classList.toggle('display-tela-3');
     tela_1.classList.toggle('display-tela-1');
     tela_1.classList.toggle('escondido');
+    toggleTela3();
     carregarQuizzes();
 }
-// Fim da Tela 3
+//Fim da Tela 3
+
+
+function toggleCarregamento(texto){
+    const carregamento = document.querySelector('.tela-carregamento');
+    carregamento.classList.toggle('escondido');
+    carregamento.classList.toggle('display-tela-carregamento');
+    if (texto !== null){
+        carregamento.querySelector('h1').innerHTML = texto;
+    }
+}
+
+function toggleTela1(){
+    const tela_1 = document.querySelector('.tela-1');
+    tela_1.classList.toggle('display-tela-1');
+    tela_1.classList.toggle('escondido');
+}
+
+function toggleTela2(){
+    const tela_2 = document.querySelector('.conteudoTela2');
+    tela_2.classList.toggle('tela-2');
+    tela_2.classList.toggle('escondido');
+}
+
+function toggleTela3(){
+    const tela_3 = document.querySelector('.tela-3');
+    tela_3.classList.toggle('display-tela-3');
+    tela_3.classList.toggle('escondido');
+}
