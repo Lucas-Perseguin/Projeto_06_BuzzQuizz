@@ -96,14 +96,11 @@ function quizzCerto(valor) {
                         <img src="${Quizz.questions[i].answers[1].image}}">
                         <h2>${Quizz.questions[i].answers[1].text}</h2>
                     </div>
+                </div>
             </div>
                 
                 `
-            const primeiratela = document.querySelector('.tela-1');
-            const segundatela = document.querySelector('.conteudoTela2');
-            primeiratela.classList.add('escondido');
-            segundatela.classList.remove('escondido');
-            segundatela.classList.add('tela-2');
+
         } else if (Quizz.questions[i].answers.length === 3) {
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
@@ -123,14 +120,10 @@ function quizzCerto(valor) {
                         <img src="${Quizz.questions[i].answers[2].image}">
                         <h2>${Quizz.questions[i].answers[2].text}</h2>
                     </div>
+                </div>
             </div>
                 
                 `
-            const primeiratela = document.querySelector('.tela-1');
-            const segundatela = document.querySelector('.conteudoTela2');
-            primeiratela.classList.add('escondido');
-            segundatela.classList.remove('escondido');
-            segundatela.classList.add('tela-2');
         } else if (Quizz.questions[i].answers.length === 4) {
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
@@ -159,12 +152,15 @@ function quizzCerto(valor) {
             </div>
                 
                 `
-            const primeiratela = document.querySelector('.tela-1');
-            const segundatela = document.querySelector('.conteudoTela2');
-            primeiratela.classList.add('escondido');
-            segundatela.classList.remove('escondido');
-            segundatela.classList.add('tela-2');
+
         }
+        const backgroundtitle = document.querySelector('.tituloperguntaQuizz');
+        backgroundtitle.style.backgroundColor = `${Quizz.questions[i].color}`
+        const primeiratela = document.querySelector('.tela-1');
+        const segundatela = document.querySelector('.conteudoTela2');
+        primeiratela.classList.add('escondido');
+        segundatela.classList.remove('escondido');
+        segundatela.classList.add('tela-2');
     }
 }
 
