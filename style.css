@@ -462,6 +462,12 @@ alerta{
     width: 100%;
     height: 100vh;
 }
+.tela-carregamento h1{
+    font-weight: 400;
+    font-size: 23px;
+    color: #EC362D;
+    margin-top: 24px;
+}
 /*Fim da Tela de carregamento*/
 
 
