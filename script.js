@@ -75,102 +75,98 @@ function selecionarQuizz(id) {
 function quizzCerto(valor) {
     conteudoPagina2 = document.querySelector('.conteudoTela2')
     Quizz = valor.data;
-    if (Quizz.questions[0].answers.length === 2) {
-        conteudoPagina2.innerHTML += `
-        <div class="topoTela2 ">
-            <img src="${Quizz.image}">
-            <h1>${Quizz.title}</h1>
-        </div>
-        <div class="conteudoQuizz">
-            <div class="tituloperguntaQuizz">
-                <h2>${Quizz.questions[0].title}</h2>
-            </div>
-            <div class="containerFotoTextoQuizz">
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[0].image}">
-                    <h2>${Quizz.questions[0].answers[0].text}</h2>
+    conteudoPagina2.innerHTML += `            <div class="topoTela2 ">
+    <img src="${Quizz.image}">
+    <h1>${Quizz.title}</h1>
+</div>
+    `
+    for (i = 0; Quizz.questions.length; i++) {
+        if (Quizz.questions[i].answers.length === 2){
+            conteudoPagina2.innerHTML += `
+            <div class="conteudoQuizz">
+                <div class="tituloperguntaQuizz">
+                    <h2>${Quizz.questions[i].title}</h2>
                 </div>
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[1].image}}">
-                    <h2>${Quizz.questions[0].answers[1].text}</h2>
-                </div>
-        </div>
-            
-            `
-        const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2');
-    } else if (Quizz.questions[0].answers.length === 3) {
-        conteudoPagina2.innerHTML += `
-        <div class="topoTela2 ">
-            <img src="${Quizz.image}">
-            <h1>${Quizz.title}</h1>
-        </div>
-        <div class="conteudoQuizz">
-            <div class="tituloperguntaQuizz">
-                <h2>${Quizz.questions[0].title}</h2>
-            </div>
-            <div class="containerFotoTextoQuizz">
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[0].image}">
-                    <h2>${Quizz.questions[0].answers[0].text}</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[1].image}">
-                    <h2>${Quizz.questions[0].answers[1].text}</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[2].image}">
-                    <h2>${Quizz.questions[0].answers[2].text}</h2>
-                </div>
-        </div>
-            
-            `
-        const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2');
-    } else if (Quizz.questions[0].answers.length === 4) {
-        conteudoPagina2.innerHTML += `
-        <div class="topoTela2 ">
-            <img src="${Quizz.image}">
-            <h1>${Quizz.title}</h1>
-        </div>
-        <div class="conteudoQuizz">
-            <div class="tituloperguntaQuizz">
-                <h2>${Quizz.questions[0].title}</h2>
-            </div>
-            <div class="containerFotoTextoQuizz">
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[0].image}">
-                    <h2>${Quizz.questions[0].answers[0].text}</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[1].image}}">
-                    <h2>${Quizz.questions[0].answers[1].text}</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[2].image}">
-                    <h2>${Quizz.questions[0].answers[2].text}</h2>
-                </div>
-                <div class="foto-texto">
-                    <img src="${Quizz.questions[0].answers[3].image}">
-                    <h2>${Quizz.questions[0].answers[3].text}</h2>
-                </div>
+                <div class="containerFotoTextoQuizz">
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[0].image}">
+                        <h2>${Quizz.questions[i].answers[0].text}</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[1].image}}">
+                        <h2>${Quizz.questions[i].answers[1].text}</h2>
+                    </div>
             </div>
                 
-        </div>
-            
-            `
-        const primeiratela = document.querySelector('.tela-1');
-        const segundatela = document.querySelector('.conteudoTela2');
-        primeiratela.classList.add('escondido');
-        segundatela.classList.remove('escondido');
-        segundatela.classList.add('tela-2');
+                `
+            const primeiratela = document.querySelector('.tela-1');
+            const segundatela = document.querySelector('.conteudoTela2');
+            primeiratela.classList.add('escondido');
+            segundatela.classList.remove('escondido');
+            segundatela.classList.add('tela-2');
+        } else if (Quizz.questions[i].answers.length === 3) {
+            conteudoPagina2.innerHTML += `
+            <div class="conteudoQuizz">
+                <div class="tituloperguntaQuizz">
+                    <h2>${Quizz.questions[i].title}</h2>
+                </div>
+                <div class="containerFotoTextoQuizz">
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[0].image}">
+                        <h2>${Quizz.questions[i].answers[0].text}</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[1].image}">
+                        <h2>${Quizz.questions[i].answers[1].text}</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[2].image}">
+                        <h2>${Quizz.questions[i].answers[2].text}</h2>
+                    </div>
+            </div>
+                
+                `
+            const primeiratela = document.querySelector('.tela-1');
+            const segundatela = document.querySelector('.conteudoTela2');
+            primeiratela.classList.add('escondido');
+            segundatela.classList.remove('escondido');
+            segundatela.classList.add('tela-2');
+        } else if (Quizz.questions[i].answers.length === 4) {
+            conteudoPagina2.innerHTML += `
+            <div class="conteudoQuizz">
+                <div class="tituloperguntaQuizz">
+                    <h2>${Quizz.questions[i].title}</h2>
+                </div>
+                <div class="containerFotoTextoQuizz">
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[0].image}">
+                        <h2>${Quizz.questions[i].answers[0].text}</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[1].image}}">
+                        <h2>${Quizz.questions[i].answers[1].text}</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[2].image}">
+                        <h2>${Quizz.questions[i].answers[2].text}</h2>
+                    </div>
+                    <div class="foto-texto">
+                        <img src="${Quizz.questions[i].answers[3].image}">
+                        <h2>${Quizz.questions[i].answers[3].text}</h2>
+                    </div>
+                </div>
+                    
+            </div>
+                
+                `
+            const primeiratela = document.querySelector('.tela-1');
+            const segundatela = document.querySelector('.conteudoTela2');
+            primeiratela.classList.add('escondido');
+            segundatela.classList.remove('escondido');
+            segundatela.classList.add('tela-2');
+        }
     }
+
     /*  conteudoPagina2 = document.querySelector('.conteudoTela2')
             
         const primeiratela = document.querySelector('.tela-1');
