@@ -576,14 +576,12 @@ function validarDescricaoNivel(nivel) {
 }
 
 function finalizarQuizz() {
-    console.log('Cheguei antesd a criação do quizz para envio');
     const quizz = {
         title: document.getElementById('tituloCriarQuizz').value,
         image: document.getElementById('urlCriarQuizz').value,
         questions: [],
         levels: []
     };
-    console.log('antes de colocar as perguntas no quizz');
     const perguntas = document.querySelector('.tela-3-2').querySelectorAll('.pergunta');
     for (let i = 0; i < perguntas.length; i++) {
         let pergunta = {
@@ -598,7 +596,6 @@ function finalizarQuizz() {
         };
         pergunta.answers.push(respostaCorreta);
         let respostasIncorretas = perguntas[i].querySelectorAll('.respostas-incorretas');
-        console.log('ants de colocar as respostas incorretas dentro da pergunta');
         for (let j = 0; j < respostasIncorretas.length; j++) {
             if (respostasIncorretas[j].querySelector('.resposta-incorreta').value !== '') {
                 let respostaIncorreta = {
@@ -606,13 +603,11 @@ function finalizarQuizz() {
                     image: respostasIncorretas[j].querySelector('.url').value,
                     isCorrectAnswer: false
                 };
-                console.log('antes de colocar uma resposta incorreta na pergunta');
                 pergunta.answers.push(respostaIncorreta);
             }
         }
         quizz.questions.push(pergunta);
     }
-    console.log('antes de colocar os niveis no quizz');
     const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
     for (let i = 0; i < niveis.length; i++) {
         let nivel = {
@@ -623,7 +618,6 @@ function finalizarQuizz() {
         };
         quizz.levels.push(nivel);
     }
-    console.log('to aqui depois de criar o quizz e anets de mandar ele');
     const post = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
     post.then(telaFinalCriacaoQuizz);
     post.catch(erroEnviarQuizzCriacao);
