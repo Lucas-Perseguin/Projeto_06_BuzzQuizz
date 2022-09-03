@@ -255,6 +255,10 @@
     color: white;
 }
 
+.textosDesselecionados{
+    
+}
+
 .containerFotoTextoQuizz5, .containerFotoTextoQuizz0, 
 .containerFotoTextoQuizz1, .containerFotoTextoQuizz2, 
 .containerFotoTextoQuizz3, .containerFotoTextoQuizz4{
@@ -264,7 +268,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    
+
 }
 
 .foto-texto{
