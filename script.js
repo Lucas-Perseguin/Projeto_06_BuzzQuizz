@@ -70,7 +70,6 @@ let Quizz;
 let segundaTela;
 let caixa = [];
 
-
 function selecionarQuizz(id, telaDesrenderizar) {
     if (telaDesrenderizar !== null){
         telaDesrenderizar();
@@ -176,8 +175,14 @@ function quizzCerto(valor) {
     }
 }
 
-function selecionado(){
+function selecionado(elementoClicado){
+    const pagina = document.querySelector('.containerFotoTextoQuizz .respostasErradas');
+    console.log(pagina)
     
+
+/*     if(a){
+
+    } */
 
 } 
 
