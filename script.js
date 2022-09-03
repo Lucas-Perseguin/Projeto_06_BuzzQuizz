@@ -97,7 +97,7 @@ function quizzCerto(valor) {
 </div>
     `
     for (i = 0; i < Quizz.questions.length; i++) {
-        caixa.push(Quizz.questions[0].answers);
+        caixa.push(Quizz.questions[i].answers);
         caixa[i].sort(() => .5 - Math.random());
         contador++
         if (Quizz.questions[i].answers.length === 2) {
