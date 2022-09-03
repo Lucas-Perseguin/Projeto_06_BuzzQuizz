@@ -22,13 +22,13 @@ function renderizarQuizzes() {
     const boxCriarQuizzes = document.querySelector(".criar-quizz");
     const seusQuizzes = document.querySelector(".seus-quizzes");
 
-    let id = localStorage.getItem('idQuizzUser');
-    const idQuizUser = JSON.parse(id);
 
 
     for (let i = 0; i < quizzes.length; i++) {
+        
+        let id = localStorage.getItem(quizzes[i].id);
 
-        if (quizzes[i].id === idQuizUser) {
+        if (id !== null) {
             boxCriarQuizzes.classList.add("escondido");
             seusQuizzes.classList.remove("escondido");
 
@@ -43,7 +43,7 @@ function renderizarQuizzes() {
             `
         }
 
-        if (quizzes[i].id !== idQuizUser) {
+        if (id === null) {
 
             todosQuizzes.innerHTML += `
     
@@ -756,10 +756,7 @@ function telaFinalCriacaoQuizz(quizz) {
     const botao = document.querySelector('.botao-visualizar');
     botao.setAttribute('onclick', `selecionarQuizzCriado(${quizz.data.id})`);
 
-
-    let id = quizz.data.id;
-    const idString = JSON.stringify(id);
-    localStorage.setItem(`idQuizzUser`, idString);
+    localStorage.setItem(quizz.data.id, quizz.data.id);
 }
 
 function selecionarQuizzCriado(id) {
