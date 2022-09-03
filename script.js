@@ -68,6 +68,8 @@ function renderizarQuizzes() {
 let conteudoPagina2;
 let Quizz;
 let segundaTela;
+let caixa = [];
+
 
 function selecionarQuizz(id, telaDesrenderizar) {
     if (telaDesrenderizar !== null){
@@ -80,6 +82,10 @@ function selecionarQuizz(id, telaDesrenderizar) {
     console.log(id);
 }
 
+function randomizarArray(){
+
+}
+
 function quizzCerto(valor) {
     Quizz = valor.data;
     conteudoPagina2 = document.querySelector('.conteudoTela2')
@@ -89,7 +95,10 @@ function quizzCerto(valor) {
     <h1>${Quizz.title}</h1>
 </div>
     `
-    for (let i = 0; i < Quizz.questions.length; i++) {
+    for (i = 0; i < Quizz.questions.length; i++) {
+        caixa.push(Quizz.questions[0].answers);
+        caixa[i].sort(() => .5 - Math.random());
+        
         if (Quizz.questions[i].answers.length === 2){
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
@@ -98,12 +107,12 @@ function quizzCerto(valor) {
                 </div>
                 <div class="containerFotoTextoQuizz">
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[0].image}">
-                        <h2>${Quizz.questions[i].answers[0].text}</h2>
+                        <img src="${caixa[i][0].image}">
+                        <h2>${caixa[i][0].text}</h2>
                     </div>
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[1].image}">
-                        <h2>${Quizz.questions[i].answers[1].text}</h2>
+                        <img src="${caixa[i][1].image}">
+                        <h2>${caixa[i][1].text}</h2>
                     </div>
                 </div>
             </div>
@@ -118,16 +127,16 @@ function quizzCerto(valor) {
                 </div>
                 <div class="containerFotoTextoQuizz">
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[0].image}">
-                        <h2>${Quizz.questions[i].answers[0].text}</h2>
+                        <img src="${caixa[i][0].image}">
+                        <h2>${caixa[i][0].text}</h2>
                     </div>
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[1].image}">
-                        <h2>${Quizz.questions[i].answers[1].text}</h2>
+                        <img src="${caixa[i][1].image}">
+                        <h2>${caixa[i][1].text}</h2>
                     </div>
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[2].image}">
-                        <h2>${Quizz.questions[i].answers[2].text}</h2>
+                        <img src="${caixa[i][2].image}">
+                        <h2>${caixa[i][2].text}</h2>
                     </div>
                 </div>
             </div>
@@ -141,20 +150,20 @@ function quizzCerto(valor) {
                 </div>
                 <div class="containerFotoTextoQuizz">
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[0].image}">
-                        <h2>${Quizz.questions[i].answers[0].text}</h2>
+                        <img src="${caixa[i][0].image}">
+                        <h2>${caixa[i][0].text}</h2>
                     </div>
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[1].image}">
-                        <h2>${Quizz.questions[i].answers[1].text}</h2>
+                        <img src="${caixa[i][1].image}">
+                        <h2>${caixa[i][1].text}</h2>
                     </div>
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[2].image}">
-                        <h2>${Quizz.questions[i].answers[2].text}</h2>
+                        <img src="${caixa[i][2].image}">
+                        <h2>${caixa[i][2].text}</h2>
                     </div>
                     <div class="foto-texto" onclick="selecionado(this)">
-                        <img src="${Quizz.questions[i].answers[3].image}">
-                        <h2>${Quizz.questions[i].answers[3].text}</h2>
+                        <img src="${caixa[i][3].image}">
+                        <h2>${caixa[i][3].text}</h2>
                     </div>
                 </div>
             </div>
@@ -168,10 +177,9 @@ function quizzCerto(valor) {
 }
 
 function selecionado(){
-/*     const certaResposta = Quizz.questions[]
-    const caixa = querySelector('.foto-texto'); */
+    
 
-}
+} 
 
 function quizzError(valor) {
     console.log('deu ruim');
