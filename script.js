@@ -183,12 +183,12 @@ function selecionado0(elementoClicado) {
     const selecionar = elementoClicado;
     const pagina = document.querySelector('.containerFotoTextoQuizz0')
     for (let i = 0; i < pagina.children.length; i++) {
-        pagina.children[i].classList.add('respostasErradas textosDesselecionados');
+        pagina.children[i].classList.add('respostasErradas');
     }
     for (let j = 0; j < pagina.children.length; j++) {
         pagina.children[j].removeAttribute('onclick');
         if (selecionar.classList.contains('respostasErradas')) {
-            selecionar.classList.remove('respostasErradas textosDesselecionados');
+            selecionar.classList.remove('respostasErradas');
             selecionar.classList.add('selecionou')
         }
     }
@@ -198,12 +198,12 @@ function selecionado1(elementoClicado1) {
     const selecionar = elementoClicado1;
     const pagina = document.querySelector('.containerFotoTextoQuizz1')
     for (let i = 0; i < pagina.children.length; i++) {
-        pagina.children[i].classList.add('respostasErradas textosDesselecionados');
+        pagina.children[i].classList.add('respostasErradas');
     }
     for (let j = 0; j < pagina.children.length; j++) {
         pagina.children[j].removeAttribute('onclick');
         if (selecionar.classList.contains('respostasErradas')) {
-            selecionar.classList.remove('respostasErradas textosDesselecionados');
+            selecionar.classList.remove('respostasErradas');
             selecionar.classList.add('selecionou')
         }
     }
@@ -213,12 +213,12 @@ function selecionado2(elementoClicado2) {
     const selecionar = elementoClicado2;
     const pagina = document.querySelector('.containerFotoTextoQuizz2')
     for (let i = 0; i < pagina.children.length; i++) {
-        pagina.children[i].classList.add('respostasErradas textosDesselecionados');
+        pagina.children[i].classList.add('respostasErradas');
     }
     for (let j = 0; j < pagina.children.length; j++) {
         pagina.children[j].removeAttribute('onclick');
         if (selecionar.classList.contains('respostasErradas')) {
-            selecionar.classList.remove('respostasErradas textosDesselecionados');
+            selecionar.classList.remove('respostasErradas');
             selecionar.classList.add('selecionou')
         }
     }
@@ -228,12 +228,12 @@ function selecionado3(elementoClicado3) {
     const selecionar = elementoClicado3;
     const pagina = document.querySelector('.containerFotoTextoQuizz3')
     for (let i = 0; i < pagina.children.length; i++) {
-        pagina.children[i].classList.add('respostasErradas textosDesselecionados');
+        pagina.children[i].classList.add('respostasErradas');
     }
     for (let j = 0; j < pagina.children.length; j++) {
         pagina.children[j].removeAttribute('onclick');
         if (selecionar.classList.contains('respostasErradas')) {
-            selecionar.classList.remove('respostasErradas textosDesselecionados');
+            selecionar.classList.remove('respostasErradas');
             selecionar.classList.add('selecionou')
         }
     }
@@ -243,12 +243,12 @@ function selecionado4(elementoClicado4) {
     const selecionar = elementoClicado4;
     const pagina = document.querySelector('.containerFotoTextoQuizz4')
     for (let i = 0; i < pagina.children.length; i++) {
-        pagina.children[i].classList.add('respostasErradas textosDesselecionados');
+        pagina.children[i].classList.add('respostasErradas');
     }
     for (let j = 0; j < pagina.children.length; j++) {
         pagina.children[j].removeAttribute('onclick');
         if (selecionar.classList.contains('respostasErradas')) {
-            selecionar.classList.remove('respostasErradas textosDesselecionados');
+            selecionar.classList.remove('respostasErradas');
             selecionar.classList.add('selecionou')
         }
     }
@@ -258,12 +258,12 @@ function selecionado5(elementoClicado5) {
     const selecionar = elementoClicado5;
     const pagina = document.querySelector('.containerFotoTextoQuizz5')
     for (let i = 0; i < pagina.children.length; i++) {
-        pagina.children[i].classList.add('respostasErradas textosDesselecionados');
+        pagina.children[i].classList.add('respostasErradas');
     }
     for (let j = 0; j < pagina.children.length; j++) {
         pagina.children[j].removeAttribute('onclick');
         if (selecionar.classList.contains('respostasErradas')) {
-            selecionar.classList.remove('respostasErradas textosDesselecionados');
+            selecionar.classList.remove('respostasErradas');
             selecionar.classList.add('selecionou')
         }
     }
