@@ -69,11 +69,11 @@ let conteudoPagina2;
 let Quizz;
 let segundaTela;
 let caixa = [];
-let pagina;
-let selecionar;
+
+let contador = 0;
 
 function selecionarQuizz(id, telaDesrenderizar) {
-    if (telaDesrenderizar !== null){
+    if (telaDesrenderizar !== null) {
         telaDesrenderizar();
     }
     toggleCarregamento('Carregando quizz...');
@@ -83,7 +83,7 @@ function selecionarQuizz(id, telaDesrenderizar) {
     console.log(id);
 }
 
-function randomizarArray(){
+function randomizarArray() {
 
 }
 
@@ -99,19 +99,19 @@ function quizzCerto(valor) {
     for (i = 0; i < Quizz.questions.length; i++) {
         caixa.push(Quizz.questions[0].answers);
         caixa[i].sort(() => .5 - Math.random());
-        
-        if (Quizz.questions[i].answers.length === 2){
+        contador++
+        if (Quizz.questions[i].answers.length === 2) {
             conteudoPagina2.innerHTML += `
             <div class="conteudoQuizz">
                 <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
-                <div class="containerFotoTextoQuizz">
-                    <div class="foto-texto" onclick="selecionado(this)">
+                <div class="containerFotoTextoQuizz${i}">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][0].image}">
                         <h2>${caixa[i][0].text}</h2>
                     </div>
-                    <div class="foto-texto" onclick="selecionado(this)">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][1].image}">
                         <h2>${caixa[i][1].text}</h2>
                     </div>
@@ -126,16 +126,16 @@ function quizzCerto(valor) {
                 <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
-                <div class="containerFotoTextoQuizz">
-                    <div class="foto-texto" onclick="selecionado(this)">
+                <div class="containerFotoTextoQuizz${i}">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][0].image}">
                         <h2>${caixa[i][0].text}</h2>
                     </div>
-                    <div class="foto-texto" onclick="selecionado(this)">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][1].image}">
                         <h2>${caixa[i][1].text}</h2>
                     </div>
-                    <div class="foto-texto" onclick="selecionado(this)">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][2].image}">
                         <h2>${caixa[i][2].text}</h2>
                     </div>
@@ -149,20 +149,20 @@ function quizzCerto(valor) {
                 <div class="tituloperguntaQuizz" style="background-color:${Quizz.questions[i].color}">
                     <h2>${Quizz.questions[i].title}</h2>
                 </div>
-                <div class="containerFotoTextoQuizz">
-                    <div class="foto-texto" onclick="selecionado(this)">
+                <div class="containerFotoTextoQuizz${i}">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][0].image}">
                         <h2>${caixa[i][0].text}</h2>
                     </div>
-                    <div class="foto-texto" onclick="selecionado(this)">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][1].image}">
                         <h2>${caixa[i][1].text}</h2>
                     </div>
-                    <div class="foto-texto" onclick="selecionado(this)">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][2].image}">
                         <h2>${caixa[i][2].text}</h2>
                     </div>
-                    <div class="foto-texto" onclick="selecionado(this)">
+                    <div class="foto-texto" onclick="selecionado${i}(this)">
                         <img src="${caixa[i][3].image}">
                         <h2>${caixa[i][3].text}</h2>
                     </div>
@@ -179,22 +179,97 @@ function quizzCerto(valor) {
 
 let perguntados;
 
-function selecionado(elementoClicado){
-    selecionar = elementoClicado;
-    pagina = document.querySelector('.containerFotoTextoQuizz');
-    for(let i = 0; i < pagina.children.length; i++){
+function selecionado0(elementoClicado) {
+    const selecionar = elementoClicado;
+    const pagina = document.querySelector('.containerFotoTextoQuizz0')
+    for (let i = 0; i < pagina.children.length; i++) {
         pagina.children[i].classList.add('respostasErradas');
     }
-    for(let j = 0; j < pagina.children.length; j++){
-        if (selecionar.classList.contains('respostasErradas')){
+    for (let j = 0; j < pagina.children.length; j++) {
+        pagina.children[j].removeAttribute('onclick');
+        if (selecionar.classList.contains('respostasErradas')) {
             selecionar.classList.remove('respostasErradas');
-            pagina.children[j].removeAttribute('onclick');
-
+            selecionar.classList.add('selecionou')
         }
     }
-} 
+}
 
-function scrollarPagina(){
+function selecionado1(elementoClicado1) {
+    const selecionar = elementoClicado1;
+    const pagina = document.querySelector('.containerFotoTextoQuizz1')
+    for (let i = 0; i < pagina.children.length; i++) {
+        pagina.children[i].classList.add('respostasErradas');
+    }
+    for (let j = 0; j < pagina.children.length; j++) {
+        pagina.children[j].removeAttribute('onclick');
+        if (selecionar.classList.contains('respostasErradas')) {
+            selecionar.classList.remove('respostasErradas');
+            selecionar.classList.add('selecionou')
+        }
+    }
+}
+
+function selecionado2(elementoClicado2) {
+    const selecionar = elementoClicado2;
+    const pagina = document.querySelector('.containerFotoTextoQuizz2')
+    for (let i = 0; i < pagina.children.length; i++) {
+        pagina.children[i].classList.add('respostasErradas');
+    }
+    for (let j = 0; j < pagina.children.length; j++) {
+        pagina.children[j].removeAttribute('onclick');
+        if (selecionar.classList.contains('respostasErradas')) {
+            selecionar.classList.remove('respostasErradas');
+            selecionar.classList.add('selecionou')
+        }
+    }
+}
+
+function selecionado3(elementoClicado3) {
+    const selecionar = elementoClicado3;
+    const pagina = document.querySelector('.containerFotoTextoQuizz3')
+    for (let i = 0; i < pagina.children.length; i++) {
+        pagina.children[i].classList.add('respostasErradas');
+    }
+    for (let j = 0; j < pagina.children.length; j++) {
+        pagina.children[j].removeAttribute('onclick');
+        if (selecionar.classList.contains('respostasErradas')) {
+            selecionar.classList.remove('respostasErradas');
+            selecionar.classList.add('selecionou')
+        }
+    }
+}
+
+function selecionado4(elementoClicado4) {
+    const selecionar = elementoClicado4;
+    const pagina = document.querySelector('.containerFotoTextoQuizz4')
+    for (let i = 0; i < pagina.children.length; i++) {
+        pagina.children[i].classList.add('respostasErradas');
+    }
+    for (let j = 0; j < pagina.children.length; j++) {
+        pagina.children[j].removeAttribute('onclick');
+        if (selecionar.classList.contains('respostasErradas')) {
+            selecionar.classList.remove('respostasErradas');
+            selecionar.classList.add('selecionou')
+        }
+    }
+}
+
+function selecionado5(elementoClicado5) {
+    const selecionar = elementoClicado5;
+    const pagina = document.querySelector('.containerFotoTextoQuizz5')
+    for (let i = 0; i < pagina.children.length; i++) {
+        pagina.children[i].classList.add('respostasErradas');
+    }
+    for (let j = 0; j < pagina.children.length; j++) {
+        pagina.children[j].removeAttribute('onclick');
+        if (selecionar.classList.contains('respostasErradas')) {
+            selecionar.classList.remove('respostasErradas');
+            selecionar.classList.add('selecionou')
+        }
+    }
+}
+
+function scrollarPagina() {
     const clicado1 = document.querySelector(caixa)
 }
 
@@ -532,7 +607,7 @@ function validarNiveisQuizz() {
         alert('Pelo menos um dos níveis tem que ter um acerto mínimo de 0%');
         return;
     }
-    if (acertosControleIgualdadeArray.length !== new Set(acertosControleIgualdadeArray).size){
+    if (acertosControleIgualdadeArray.length !== new Set(acertosControleIgualdadeArray).size) {
         alert('Não pode haver níveis com % de acerto mínimo iguais');
         return;
     }
@@ -687,7 +762,7 @@ function telaFinalCriacaoQuizz(quizz) {
     localStorage.setItem(`idQuizzUser`, idString);
 }
 
-function selecionarQuizzCriado(id){
+function selecionarQuizzCriado(id) {
     const tela_3_4 = document.querySelector('.tela-3-4');
     const tela_3_1 = document.querySelector('.tela-3-1');
     tela_3_4.classList.toggle('escondido');
@@ -697,9 +772,9 @@ function selecionarQuizzCriado(id){
     selecionarQuizz(id, toggleTela3);
 }
 
-function resetarTelaInicial(){
+function resetarTelaInicial() {
     const quizzes = document.querySelectorAll('.quizz');
-    for (let i = 0; i < quizzes.length; i++){
+    for (let i = 0; i < quizzes.length; i++) {
         quizzes[i].remove();
     }
     const tela_1 = document.querySelector('.tela-1');
@@ -717,28 +792,28 @@ function resetarTelaInicial(){
 //Fim da Tela 3
 
 
-function toggleCarregamento(texto){
+function toggleCarregamento(texto) {
     const carregamento = document.querySelector('.tela-carregamento');
     carregamento.classList.toggle('escondido');
     carregamento.classList.toggle('display-tela-carregamento');
-    if (texto !== null){
+    if (texto !== null) {
         carregamento.querySelector('h1').innerHTML = texto;
     }
 }
 
-function toggleTela1(){
+function toggleTela1() {
     const tela_1 = document.querySelector('.tela-1');
     tela_1.classList.toggle('display-tela-1');
     tela_1.classList.toggle('escondido');
 }
 
-function toggleTela2(){
+function toggleTela2() {
     const tela_2 = document.querySelector('.conteudoTela2');
     tela_2.classList.toggle('tela-2');
     tela_2.classList.toggle('escondido');
 }
 
-function toggleTela3(){
+function toggleTela3() {
     const tela_3 = document.querySelector('.tela-3');
     tela_3.classList.toggle('display-tela-3');
     tela_3.classList.toggle('escondido');

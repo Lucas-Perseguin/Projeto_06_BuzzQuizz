@@ -255,12 +255,16 @@
     color: white;
 }
 
-.containerFotoTextoQuizz{
+.containerFotoTextoQuizz5, .containerFotoTextoQuizz0, 
+.containerFotoTextoQuizz1, .containerFotoTextoQuizz2, 
+.containerFotoTextoQuizz3, .containerFotoTextoQuizz4{
+
     width: 100%;
     height: 70%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 
 .foto-texto{
