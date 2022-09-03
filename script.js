@@ -97,6 +97,7 @@ function quizzCerto(valor) {
 </div>
     `
     for (i = 0; i < Quizz.questions.length; i++) {
+        
         caixa.push(Quizz.questions[i].answers);
         caixa[i].sort(() => .5 - Math.random());
         contador++;
@@ -135,7 +136,7 @@ function selecionado(numPergunta, numResposta) {
         }
         perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('respostasErradas');
     }
-    setTimeout(scrollIntoViwe(perguntas[numeroPergunta + 1]), 2000);
+    setTimeout(() => {perguntas[numPergunta + 1].scrollIntoView()}, 2000);
 }
 
 function scrollarPagina() {
