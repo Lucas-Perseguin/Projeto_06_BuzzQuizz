@@ -259,9 +259,7 @@
     
 } */
 
-.containerFotoTextoQuizz5, .containerFotoTextoQuizz0, 
-.containerFotoTextoQuizz1, .containerFotoTextoQuizz2, 
-.containerFotoTextoQuizz3, .containerFotoTextoQuizz4{
+.containerFotoTextoQuizz{
 
     width: 100%;
     height: 70%;
