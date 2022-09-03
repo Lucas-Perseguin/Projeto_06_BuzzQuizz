@@ -269,6 +269,17 @@
 
 }
 
+.resultadoQuizz{
+
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #000000;
+
+}
+
 .foto-texto{
     width: 48%;
     height: 48%;

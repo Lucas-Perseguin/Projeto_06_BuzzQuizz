@@ -25,7 +25,7 @@ function renderizarQuizzes() {
 
 
     for (let i = 0; i < quizzes.length; i++) {
-        
+
         let id = localStorage.getItem(quizzes[i].id);
 
         if (id !== null) {
@@ -97,7 +97,7 @@ function quizzCerto(valor) {
 </div>
     `
     for (i = 0; i < Quizz.questions.length; i++) {
-        
+
         caixa.push(Quizz.questions[i].answers);
         caixa[i].sort(() => .5 - Math.random());
         contador++;
@@ -110,9 +110,9 @@ function quizzCerto(valor) {
         container.appendChild(tituloPergunta);
         const containerRespostas = document.createElement('div');
         containerRespostas.classList.add('containerFotoTextoQuizz');
-        for (let j = 0; j < Quizz.questions[i].answers.length; j++){
+        for (let j = 0; j < Quizz.questions[i].answers.length; j++) {
             containerRespostas.innerHTML += `
-                <div class="foto-texto" onclick="selecionado(${i}, ${j})">
+                <div class="foto-texto" id="${caixa[i][j].isCorrectAnswer}" onclick="selecionado(${i}, ${j})">
                     <img src="${caixa[i][j].image}">
                     <h2>${caixa[i][j].text}</h2>
                 </div>`
@@ -128,19 +128,28 @@ let perguntados;
 
 function selecionado(numPergunta, numResposta) {
     const perguntas = document.querySelectorAll('.conteudoQuizz');
-    const resposta = perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${numResposta + 1})`);
-    for (let i = 0; i < perguntas[numPergunta].querySelector('.containerFotoTextoQuizz').querySelectorAll('.foto-texto').length; i++){
-        if (i === numResposta){
-            perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz :nth-child(${i + 1})`).classList.add('selecionou');
+    const selecionou = perguntas[numPergunta].querySelector('.selecionou');
+    if (selecionou !== null){
+        return;
+    }
+    for (let i = 0; i < perguntas[numPergunta].querySelector('.containerFotoTextoQuizz').querySelectorAll('.foto-texto').length; i++) {
+        if (i === numResposta) {
+            perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('selecionou');
             continue;
         }
         perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('respostasErradas');
-    }
-    setTimeout(() => {perguntas[numPergunta + 1].scrollIntoView()}, 2000);
-}
+        if(perguntas[numPergunta].classList.contains('selecionou')){
 
-function scrollarPagina() {
-    const clicado1 = document.querySelector(caixa)
+        }
+
+    }
+    
+    if (numPergunta !== perguntas.length){
+        setTimeout(() => {perguntas[numPergunta + 1].scrollIntoView()}, 2000);
+    }
+    else{
+        setTimeout(() => {/Nível aqui/.scrollIntoView()}, 2000);
+    }  
 }
 
 function quizzError(valor) {
