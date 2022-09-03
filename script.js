@@ -135,6 +135,7 @@ function selecionado(numPergunta, numResposta) {
         }
         perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('respostasErradas');
     }
+    setTimeout(scrollIntoViwe(perguntas[numeroPergunta + 1]), 2000);
 }
 
 function scrollarPagina() {
