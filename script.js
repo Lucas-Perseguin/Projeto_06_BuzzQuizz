@@ -69,6 +69,8 @@ let conteudoPagina2;
 let Quizz;
 let segundaTela;
 let caixa = [];
+let pagina;
+let selecionar;
 
 function selecionarQuizz(id, telaDesrenderizar) {
     if (telaDesrenderizar !== null){
@@ -175,16 +177,26 @@ function quizzCerto(valor) {
     }
 }
 
+let perguntados;
+
 function selecionado(elementoClicado){
-    const pagina = document.querySelector('.containerFotoTextoQuizz .respostasErradas');
-    console.log(pagina)
-    
+    selecionar = elementoClicado;
+    pagina = document.querySelector('.containerFotoTextoQuizz');
+    for(let i = 0; i < pagina.children.length; i++){
+        pagina.children[i].classList.add('respostasErradas');
+    }
+    for(let j = 0; j < pagina.children.length; j++){
+        if (selecionar.classList.contains('respostasErradas')){
+            selecionar.classList.remove('respostasErradas');
+            pagina.children[j].removeAttribute('onclick');
 
-/*     if(a){
-
-    } */
-
+        }
+    }
 } 
+
+function scrollarPagina(){
+    const clicado1 = document.querySelector(caixa)
+}
 
 function quizzError(valor) {
     console.log('deu ruim');
