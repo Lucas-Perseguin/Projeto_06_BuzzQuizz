@@ -266,18 +266,50 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
 }
 
-.resultadoQuizz{
 
-    width: 100%;
-    height: 70%;
+.resultadoQuizz{
+    width: 45%;
+    height: 430px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #000000;
+    box-sizing: border-box;
+    padding: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 21px;
+    color: white;
+    word-break: break-all;
+}
 
+.resultadoQuizz >:nth-child(1){
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25%;
+    width: 100%;
+    background-color: #EC362D;
+}
+
+.resultadoQuizz >:nth-child(2){
+    display: flex;
+    margin-top: 15px;
+    height: 70%;
+    width: 100%;
+    font-size: 16px;
+    color: black;
+    gap: 0 15px;
+}
+
+.resultadoQuizz p:nth-child(2){
+    margin-top: 5px;
+}
+
+.resultadoQuizz img {
+    width: 50%;
+    height: 100%;
 }
 
 .foto-texto{

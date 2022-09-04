@@ -100,7 +100,6 @@ function quizzCerto(valor) {
 
         caixa.push(Quizz.questions[i].answers);
         caixa[i].sort(() => .5 - Math.random());
-        contador++;
         const container = document.createElement('div');
         container.classList.add('conteudoQuizz');
         const tituloPergunta = document.createElement('div');
@@ -135,6 +134,7 @@ function selecionado(numPergunta, numResposta) {
     for (let i = 0; i < perguntas[numPergunta].querySelector('.containerFotoTextoQuizz').querySelectorAll('.foto-texto').length; i++) {
         if (i === numResposta) {
             perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('selecionou');
+            contador ++
             continue;
         }
         perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('respostasErradas');
@@ -149,7 +149,41 @@ function selecionado(numPergunta, numResposta) {
     }
     else{
         setTimeout(() => {/Nível aqui/.scrollIntoView()}, 2000);
-    }  
+    }
+
+    if(Quizz.questions.length === contador){
+        const finalquizz = document.querySelector('.resultadoQuizz');
+        finalquizz.classList.remove('escondido')
+        setTimeout(() => {resultadoQuizz.scrollIntoView()}, 2000);
+    }
+    
+}
+
+function resultadoFinal(){
+    for(let i = 0; i < Quizz.levels.length; i++){
+        const tituloQuizz = document.createElement('div');
+        tituloQuizz.classList.add('resultadoQuizz', 'escondido');
+        const divp = document.createElement('div');
+        divp.innerHTML += `<p>${Quizz.levels[i].title}</p>`
+        const titTexto = document.createElement('div');
+        titTexto.innerHTML += `<img src="${Quizz.levels[i].image}">
+        <p>${Quizz.levels[i].text}</p>`
+        tituloQuizz.appendChild(divp);
+        tituloQuizz.appendChild(titTexto);
+        conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
+    }
+
+    if(Quizz.levels[0].minValue < 100){
+
+
+
+
+    } else if(Quizz.levels[0].minValue < 50){
+
+
+
+    }
+
 }
 
 function quizzError(valor) {
