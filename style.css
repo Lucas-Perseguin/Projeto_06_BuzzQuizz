@@ -283,6 +283,14 @@
     word-break: break-all;
 }
 
+.resultadoQuizz >:nth-child(1){
+    box-sizing: border-box;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
 .vermelhin{
     color: #af261f;
 }
@@ -591,6 +599,24 @@ alerta{
     }
 
     /* Fim da Tela 1 *****************************************************************************/
+
+    /* Tela 2 */
+        .conteudoQuizz{
+            width: 90%;
+        }
+
+        .resultadoQuizz{
+            width: 90%;
+        }
+
+        .resultadoQuizz >:nth-child(1){
+            word-break: normal;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+    /* Fim tela 2 */
 
 
     /*Tela 3*/
