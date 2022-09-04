@@ -69,10 +69,13 @@ let conteudoPagina2;
 let Quizz;
 let segundaTela;
 let caixa = [];
-
 let contador = 0;
+let quizzid;
+let telaa;
 
 function selecionarQuizz(id, telaDesrenderizar) {
+    quizzid = id;
+    telaa = telaDesrenderizar;
     if (telaDesrenderizar !== null) {
         telaDesrenderizar();
     }
@@ -165,11 +168,16 @@ function selecionado(numPergunta, numResposta) {
 
 }
 
+function resetarTelaInicialtela2(){
 
+}
 
 function resultadoFinal() {
     const resultado = Math.round((acertoss / Quizz.questions.length)*100);
     const tituloQuizz = document.createElement('div');
+    const divfinal = document.createElement('div');
+    divfinal.innerHTML += `<button type="button" onclick="newtoggleTela2(${quizzid}, ${telaa})" class="botao-reset">Resetar Quizz</button>
+    <button type="button" class="botao-voltar-home2" onclick="resetarTelaInicialtela2()">Voltar pra home</button> `
     tituloQuizz.classList.add('resultadoQuizz');
     if (resultado < 50) {
         const divp = document.createElement('div');
@@ -180,6 +188,7 @@ function resultadoFinal() {
         tituloQuizz.appendChild(divp);
         tituloQuizz.appendChild(titTexto);
         conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
+        conteudoPagina2.insertAdjacentElement('beforeend', divfinal);
     } else if (resultado > 50) {
         const divp = document.createElement('div');
         divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[1].title}</p>`
@@ -189,7 +198,20 @@ function resultadoFinal() {
         tituloQuizz.appendChild(divp);
         tituloQuizz.appendChild(titTexto);
         conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
+        conteudoPagina2.insertAdjacentElement('beforeend', divfinal);
     }
+}
+
+
+
+function resetarTelaInicialtela2(){
+    const tela1 = document.querySelector('.tela-1');
+    const tela2 = document.querySelector('.conteudoTela2');
+    tela2.classList.remove('tela-2');
+    tela2.classList.add('escondido');
+    tela1.classList.remove('escondido');
+    tela1.classList.add('display-tela-1');
+    tela1.scrollIntoView()
 }
 
 function quizzError(valor) {
@@ -705,6 +727,7 @@ function resetarTelaInicial() {
     toggleTela3();
     carregarQuizzes();
 }
+
 //Fim da Tela 3
 
 
