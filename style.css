@@ -283,6 +283,14 @@
     word-break: break-all;
 }
 
+.vermelhin{
+    color: #af261f;
+}
+
+.verdizin{
+    color: rgb(6, 94, 6);
+}
+
 .resultadoQuizz >:nth-child(1){
     
     display: flex;

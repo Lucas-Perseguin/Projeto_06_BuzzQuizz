@@ -111,7 +111,7 @@ function quizzCerto(valor) {
         containerRespostas.classList.add('containerFotoTextoQuizz');
         for (let j = 0; j < Quizz.questions[i].answers.length; j++) {
             containerRespostas.innerHTML += `
-                <div class="foto-texto" id="${caixa[i][j].isCorrectAnswer}" onclick="selecionado(${i}, ${j})">
+                <div class="foto-texto ${caixa[i][j].isCorrectAnswer}" onclick="selecionado(${i}, ${j})">
                     <img src="${caixa[i][j].image}">
                     <h2>${caixa[i][j].text}</h2>
                 </div>`
@@ -124,66 +124,72 @@ function quizzCerto(valor) {
 }
 
 let perguntados;
+let acertoss = 0;
 
 function selecionado(numPergunta, numResposta) {
     const perguntas = document.querySelectorAll('.conteudoQuizz');
     const selecionou = perguntas[numPergunta].querySelector('.selecionou');
-    if (selecionou !== null){
+    if (selecionou !== null) {
         return;
     }
     for (let i = 0; i < perguntas[numPergunta].querySelector('.containerFotoTextoQuizz').querySelectorAll('.foto-texto').length; i++) {
+        if(perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto true'){
+            perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('verdizin')
+            
+        }
+        if(perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto false'){
+            perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('vermelhin')
+        }
+
         if (i === numResposta) {
             perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('selecionou');
-            contador ++
+            contador++
+            if(perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto true verdizin selecionou'){
+                acertoss++
+            }
             continue;
-        }
+
+        } 
         perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('respostasErradas');
-        if(perguntas[numPergunta].classList.contains('selecionou')){
-
-        }
-
-    }
-    
-    if (numPergunta !== perguntas.length){
-        setTimeout(() => {perguntas[numPergunta + 1].scrollIntoView()}, 2000);
-    }
-    else{
-        setTimeout(() => {/Nível aqui/.scrollIntoView()}, 2000);
     }
 
-    if(Quizz.questions.length === contador){
-        const finalquizz = document.querySelector('.resultadoQuizz');
-        finalquizz.classList.remove('escondido')
-        setTimeout(() => {resultadoQuizz.scrollIntoView()}, 2000);
+    if (numPergunta !== perguntas.length) {
+        setTimeout(() => { perguntas[numPergunta + 1].scrollIntoView() }, 2000);
     }
-    
+
+    if (Quizz.questions.length === contador) {
+        resultadoFinal()
+        const ultimo = document.querySelector('.resultadoQuizz')
+        setTimeout(() => {ultimo.scrollIntoView()}, 2000);
+    }
+
 }
 
-function resultadoFinal(){
-    for(let i = 0; i < Quizz.levels.length; i++){
-        const tituloQuizz = document.createElement('div');
-        tituloQuizz.classList.add('resultadoQuizz', 'escondido');
+
+
+function resultadoFinal() {
+    const resultado = Math.round((acertoss / Quizz.questions.length)*100);
+    const tituloQuizz = document.createElement('div');
+    tituloQuizz.classList.add('resultadoQuizz');
+    if (resultado < 50) {
         const divp = document.createElement('div');
-        divp.innerHTML += `<p>${Quizz.levels[i].title}</p>`
+        divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[0].title}</p>`
         const titTexto = document.createElement('div');
-        titTexto.innerHTML += `<img src="${Quizz.levels[i].image}">
-        <p>${Quizz.levels[i].text}</p>`
+        titTexto.innerHTML += `<img src="${Quizz.levels[0].image}">
+            <p>${Quizz.levels[0].text}</p>`
+        tituloQuizz.appendChild(divp);
+        tituloQuizz.appendChild(titTexto);
+        conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
+    } else if (resultado > 50) {
+        const divp = document.createElement('div');
+        divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[1].title}</p>`
+        const titTexto = document.createElement('div');
+        titTexto.innerHTML += `<img src="${Quizz.levels[1].image}">
+            <p>${Quizz.levels[1].text}</p>`
         tituloQuizz.appendChild(divp);
         tituloQuizz.appendChild(titTexto);
         conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
     }
-
-    if(Quizz.levels[0].minValue < 100){
-
-
-
-
-    } else if(Quizz.levels[0].minValue < 50){
-
-
-
-    }
-
 }
 
 function quizzError(valor) {
