@@ -76,6 +76,8 @@ let telaa;
 function selecionarQuizz(id, telaDesrenderizar) {
     quizzid = id;
     telaa = telaDesrenderizar;
+    id = quizzid;
+    telaDesrenderizar = telaa;
     if (telaDesrenderizar !== null) {
         telaDesrenderizar();
     }
@@ -176,8 +178,9 @@ function resultadoFinal() {
     const resultado = Math.round((acertoss / Quizz.questions.length)*100);
     const tituloQuizz = document.createElement('div');
     const divfinal = document.createElement('div');
-    divfinal.innerHTML += `<button type="button" onclick="newtoggleTela2(${quizzid}, ${telaa})" class="botao-reset">Resetar Quizz</button>
-    <button type="button" class="botao-voltar-home2" onclick="resetarTelaInicialtela2()">Voltar pra home</button> `
+    divfinal.classList.add('botoesfinais')
+    divfinal.innerHTML += `<button type="button" onclick="newtoggleTela2()" class="botao-reset">Resetar Quizz</button>
+    <button type="button" class="botaoTelainicial" onclick="resetarTelaInicialtela2()">Voltar pra home</button> `
     tituloQuizz.classList.add('resultadoQuizz');
     if (resultado < 50) {
         const divp = document.createElement('div');
@@ -202,16 +205,8 @@ function resultadoFinal() {
     }
 }
 
-
-
 function resetarTelaInicialtela2(){
-    const tela1 = document.querySelector('.tela-1');
-    const tela2 = document.querySelector('.conteudoTela2');
-    tela2.classList.remove('tela-2');
-    tela2.classList.add('escondido');
-    tela1.classList.remove('escondido');
-    tela1.classList.add('display-tela-1');
-    tela1.scrollIntoView()
+    location.reload();
 }
 
 function quizzError(valor) {
