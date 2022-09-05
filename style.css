@@ -144,6 +144,8 @@
 
 .seus-quizzes{
     width: 1050px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .titulo-seus-quizzes{
