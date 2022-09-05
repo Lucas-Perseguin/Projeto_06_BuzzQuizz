@@ -31,6 +31,7 @@ function renderizarQuizzes() {
         if (id !== null) {
             boxCriarQuizzes.classList.add("escondido");
             seusQuizzes.classList.remove("escondido");
+            seusQuizzes.classList.add('seus-quizzes-display');
 
             const listaQuizzesUser = document.querySelector(".lista-quizzes-usuario");
             listaQuizzesUser.innerHTML += `

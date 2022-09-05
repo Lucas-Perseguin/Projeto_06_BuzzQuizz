@@ -647,11 +647,14 @@ alerta{
 
     .seus-quizzes{
         width: 100%;
+        margin-top: 90px;
+    }
+
+    .seus-quizzes-display{
         display:grid;
         grid-template-rows: 50px auto;
         justify-content: center;
         align-items: center;
-        margin-top: 90px;
     }
 
     .todos-quizzes{
@@ -700,6 +703,9 @@ alerta{
     .escolher-cor input{
         width: calc(100% - 206px);
         max-width: 150px;
+    }
+    .respostas-incorretas{
+        width: 100%;
     }
     /*Fim da Tela 3*/
 }
