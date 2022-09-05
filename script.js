@@ -122,12 +122,14 @@ function quizzCerto(valor) {
         container.appendChild(containerRespostas);
         botao.insertAdjacentElement('beforebegin', container);
     }
-    executarFunção()
+    executarFunção();
 }
 
 function executarFunção(){
     toggleCarregamento(null);
     toggleTela2();
+    document.querySelector('.conteudoTela2 .topoTela2').scrollIntoView();
+
 }
 
 let perguntados;
