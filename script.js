@@ -64,7 +64,8 @@ function renderizarQuizzes() {
 /*Fim da tela 1*/
 
 
-/*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/let conteudoPagina2;
+/*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/
+let conteudoPagina2;
 let Quizz;
 let caixa = [];
 let contador = 0;
@@ -119,9 +120,13 @@ function quizzCerto(valor) {
         }
         container.appendChild(containerRespostas);
         botao.insertAdjacentElement('beforebegin', container);
-        toggleCarregamento(null);
-        toggleTela2();
     }
+    executarFunção()
+}
+
+function executarFunção(){
+    toggleCarregamento(null);
+    toggleTela2();
 }
 
 let perguntados;
