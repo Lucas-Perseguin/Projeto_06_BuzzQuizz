@@ -730,21 +730,7 @@ function selecionarQuizzCriado(id) {
 }
 
 function resetarTelaInicial() {
-    const quizzes = document.querySelectorAll('.quizz');
-    for (let i = 0; i < quizzes.length; i++) {
-        quizzes[i].remove();
-    }
-    const tela_1 = document.querySelector('.tela-1');
-    const tela_3_4 = document.querySelector('.tela-3-4');
-    const tela_3_1 = document.querySelector('.tela-3-1');
-    tela_3_4.classList.toggle('escondido');
-    tela_3_4.classList.toggle('display-tela-3');
-    tela_3_1.classList.toggle('escondido');
-    tela_3_1.classList.toggle('display-tela-3');
-    tela_1.classList.toggle('display-tela-1');
-    tela_1.classList.toggle('escondido');
-    toggleTela3();
-    carregarQuizzes();
+    window.location.reload();
 }
 
 //Fim da Tela 3
