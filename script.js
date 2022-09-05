@@ -71,13 +71,9 @@ let segundaTela;
 let caixa = [];
 let contador = 0;
 let quizzid;
-let telaa;
 
 function selecionarQuizz(id, telaDesrenderizar) {
     quizzid = id;
-    telaa = telaDesrenderizar;
-    id = quizzid;
-    telaDesrenderizar = telaa;
     if (telaDesrenderizar !== null) {
         telaDesrenderizar();
     }
@@ -163,8 +159,8 @@ function selecionado(numPergunta, numResposta) {
     }
 
     if (Quizz.questions.length === contador) {
-        resultadoFinal()
-        const ultimo = document.querySelector('.resultadoQuizz')
+        resultadoFinal();
+        const ultimo = document.querySelector('.resultadoQuizz');
         setTimeout(() => {ultimo.scrollIntoView()}, 2000);
     }
 
@@ -179,7 +175,7 @@ function resultadoFinal() {
     const tituloQuizz = document.createElement('div');
     const divfinal = document.createElement('div');
     divfinal.classList.add('botoesfinais')
-    divfinal.innerHTML += `<button type="button" onclick="newtoggleTela2()" class="botao-reset">Resetar Quizz</button>
+    divfinal.innerHTML += `<button type="button" onclick="recarregarQuizz()" class="botao-reset">Resetar Quizz</button>
     <button type="button" class="botaoTelainicial" onclick="resetarTelaInicialtela2()">Voltar pra home</button> `
     tituloQuizz.classList.add('resultadoQuizz');
     if (resultado < 50) {
@@ -207,6 +203,15 @@ function resultadoFinal() {
 
 function resetarTelaInicialtela2(){
     location.reload();
+}
+
+function recarregarQuizz(){
+    toggleTela2();
+    const remover = document.querySelectorAll('.conteudoTela2 *');
+    for (let i = 0; i < remover.length; i++){
+        remover[i].remove();
+    }
+    selecionarQuizz(quizzid, null);
 }
 
 function quizzError(valor) {
