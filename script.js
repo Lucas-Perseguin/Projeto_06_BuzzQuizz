@@ -169,10 +169,11 @@ function selecionado(numPergunta, numResposta) {
 }
 
 function checaresultado() {
+    Quizz.levels.sort(ordernarArray);
     let resultado = Math.round((acertoss / Quizz.questions.length) * 100);
     let index = Quizz.levels.length - 1;
     for (i = 0; i < Quizz.levels.length - 1; i++) {
-        if (resultado >= Quizz.levels[i].minValue && resultado <= Quizz.levels[i + 1].minValue) {
+        if (resultado >= Quizz.levels[i].minValue && resultado < Quizz.levels[i + 1].minValue) {
             index = i;
             return index;
         }
@@ -180,7 +181,18 @@ function checaresultado() {
     return index;
 }
 
+function ordernarArray(a, b){
+    if(a.minValue < b.minValue){
+        return -1;
+    }
+    if(a.minValue > b.minValue){
+        return 1;
+    }
+    return 0;
+}
+
 function resultadoFinal() {
+    let resultado = Math.round((acertoss / Quizz.questions.length) * 100);
     let index = checaresultado()
     const botao = document.querySelector('.botao-reset');
     const tituloQuizz = document.createElement('div');
@@ -205,6 +217,7 @@ function recarregarQuizz() {
     toggleTela2();
     const remover = document.querySelectorAll('.conteudoTela2 .conteudoQuizz');
     document.querySelector('.topoTela2').remove();
+    document.querySelector('.resultadoQuizz').remove();
     for (let i = 0; i < remover.length; i++) {
         remover[i].remove();
     }
