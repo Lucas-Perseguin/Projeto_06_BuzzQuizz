@@ -628,7 +628,13 @@ alerta{
     }
 
     .criar-quizz-box{
-        width: 340px;
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .criar-quizz{
+        width: 100%;
+        max-width: 340px;
     }
 
     .todos-quizzes {
@@ -648,6 +654,8 @@ alerta{
     .titulo-seus-quizzes{
         margin-top: 0;
         justify-content: space-between;
+        width: 100%;
+        max-width: 340px;
     }
 
     .seus-quizzes{
@@ -657,7 +665,6 @@ alerta{
 
     .seus-quizzes-display{
         display:grid;
-        grid-template-rows: 50px auto;
         justify-content: center;
         align-items: center;
     }
@@ -666,6 +673,25 @@ alerta{
         margin: 40px auto 40px auto;
     }
 
+    .quizz{
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .titulo-todos-quizzes{
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .lista-quizzes-usuario{
+        width: 100%;
+        max-width: 340px;
+    }
+
+    .container{
+        width: 100vw;
+        max-width: 340px;
+    }
     /* Fim da Tela 1 *****************************************************************************/
 
     /* Tela 2 */
@@ -692,6 +718,14 @@ alerta{
             text-align: center;
         }
 
+        .conteudoTela2 h2{
+            word-break: break-word;
+        }
+
+        .botao-reset, .botaoTelainicial{
+            width: 100%;
+            max-width: 300px;
+        }
     /* Fim tela 2 */
 
 
@@ -714,6 +748,10 @@ alerta{
     }
     .respostas-incorretas{
         width: 100%;
+    }
+    .tela-3-4 .quizz{
+        width: 100%;
+        max-width: 340px;
     }
     /*Fim da Tela 3*/
 }
