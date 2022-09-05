@@ -173,6 +173,7 @@
     display: flex;
     gap: 15px;
     margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 /* Fim do componente de quizzes do usuário - Tela 1 */
