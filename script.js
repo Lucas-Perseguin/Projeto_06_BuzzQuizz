@@ -64,10 +64,8 @@ function renderizarQuizzes() {
 /*Fim da tela 1*/
 
 
-/*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/
-let conteudoPagina2;
+/*--------------------------------------------------------------------------Tela 2------------------------------------------------------------------------------*/let conteudoPagina2;
 let Quizz;
-let segundaTela;
 let caixa = [];
 let contador = 0;
 let quizzid;
@@ -89,9 +87,9 @@ function randomizarArray() {
 }
 
 function quizzCerto(valor) {
+    caixa = [];
     Quizz = valor.data;
     const botao = document.querySelector('.botao-reset');
-    conteudoPagina2 = document.querySelector('.conteudoTela2')
     const topo = document.createElement('div');
     topo.classList.add('topoTela2');
     topo.innerHTML +=`<div class="opaco"></div>
@@ -161,6 +159,7 @@ function selecionado(numPergunta, numResposta) {
     }
 
     if (Quizz.questions.length === contador) {
+        contador = 0;
         resultadoFinal();
         const ultimo = document.querySelector('.resultadoQuizz');
         setTimeout(() => { ultimo.scrollIntoView() }, 2000);
@@ -205,6 +204,7 @@ function resultadoFinal() {
     tituloQuizz.appendChild(divp);
     tituloQuizz.appendChild(titTexto);
     botao.insertAdjacentElement('beforebegin', tituloQuizz);
+    acertoss = 0;
 }
 
 
