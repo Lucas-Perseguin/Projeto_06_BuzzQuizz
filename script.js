@@ -90,13 +90,15 @@ function randomizarArray() {
 
 function quizzCerto(valor) {
     Quizz = valor.data;
+    const botao = document.querySelector('.botao-reset');
     conteudoPagina2 = document.querySelector('.conteudoTela2')
-    conteudoPagina2.innerHTML += `            <div class="topoTela2 ">
-    <div class="opaco"></div>
+    const topo = document.createElement('div');
+    topo.classList.add('topoTela2');
+    topo.innerHTML +=`<div class="opaco"></div>
     <img src="${Quizz.image}">
     <h1>${Quizz.title}</h1>
-</div>
     `
+    botao.insertAdjacentElement('beforebegin', topo);
     for (i = 0; i < Quizz.questions.length; i++) {
 
         caixa.push(Quizz.questions[i].answers);
@@ -118,7 +120,7 @@ function quizzCerto(valor) {
                 </div>`
         }
         container.appendChild(containerRespostas);
-        conteudoPagina2.insertAdjacentElement('beforeend', container);
+        botao.insertAdjacentElement('beforebegin', container);
         toggleCarregamento(null);
         toggleTela2();
     }
@@ -134,23 +136,23 @@ function selecionado(numPergunta, numResposta) {
         return;
     }
     for (let i = 0; i < perguntas[numPergunta].querySelector('.containerFotoTextoQuizz').querySelectorAll('.foto-texto').length; i++) {
-        if(perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto true'){
+        if (perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto true') {
             perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('verdizin')
-            
+
         }
-        if(perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto false'){
+        if (perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto false') {
             perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('vermelhin')
         }
 
         if (i === numResposta) {
             perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('selecionou');
             contador++
-            if(perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto true verdizin selecionou'){
+            if (perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.value === 'foto-texto true verdizin selecionou') {
                 acertoss++
             }
             continue;
 
-        } 
+        }
         perguntas[numPergunta].querySelector(`.containerFotoTextoQuizz >:nth-child(${i + 1})`).classList.add('respostasErradas');
     }
 
@@ -161,54 +163,49 @@ function selecionado(numPergunta, numResposta) {
     if (Quizz.questions.length === contador) {
         resultadoFinal();
         const ultimo = document.querySelector('.resultadoQuizz');
-        setTimeout(() => {ultimo.scrollIntoView()}, 2000);
+        setTimeout(() => { ultimo.scrollIntoView() }, 2000);
     }
 
 }
 
-function resetarTelaInicialtela2(){
-
-}
-let newquizz;
-
-function checaresultado(){
-    const resultado = Math.round((acertoss / Quizz.questions.length)*100);
-    for(i = 0; i < Quizz.levels.length; i++){
-        if(resultado => Quizz.levels[i].minValue && resultado <= Quizz.levels[i+1].minValue){
-            newquizz = Quizz.levels.splice(i);
+function checaresultado() {
+    let resultado = Math.round((acertoss / Quizz.questions.length) * 100);
+    let index = Quizz.levels.length - 1;
+    for (i = 0; i < Quizz.levels.length - 1; i++) {
+        if (resultado >= Quizz.levels[i].minValue && resultado <= Quizz.levels[i + 1].minValue) {
+            index = i;
+            return index;
         }
     }
+    return index;
 }
 
 function resultadoFinal() {
-    const resultado = Math.round((acertoss / Quizz.questions.length)*100);
+    let index = checaresultado()
+    const botao = document.querySelector('.botao-reset');
     const tituloQuizz = document.createElement('div');
-    const divfinal = document.createElement('div');
-    divfinal.classList.add('botoesfinais')
-    divfinal.innerHTML += `<button type="button" onclick="recarregarQuizz()" class="botao-reset">Resetar Quizz</button>
-    <button type="button" class="botaoTelainicial" onclick="resetarTelaInicialtela2()">Voltar pra home</button> `
     tituloQuizz.classList.add('resultadoQuizz');
-            const divp = document.createElement('div');
-            divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[0].title}</p>`
-            const titTexto = document.createElement('div');
-            titTexto.innerHTML += `<img src="${Quizz.levels[0].image}">
-                <p>${Quizz.levels[0].text}</p>`
-            tituloQuizz.appendChild(divp);
-            tituloQuizz.appendChild(titTexto);
-            conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
-            conteudoPagina2.insertAdjacentElement('beforeend', divfinal);
+    const divp = document.createElement('div');
+    divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[index].title}</p>`
+    const titTexto = document.createElement('div');
+    titTexto.innerHTML += `<img src="${Quizz.levels[index].image}">
+                <p>${Quizz.levels[index].text}</p>`
+    tituloQuizz.appendChild(divp);
+    tituloQuizz.appendChild(titTexto);
+    botao.insertAdjacentElement('beforebegin', tituloQuizz);
 }
 
-        
 
-function resetarTelaInicialtela2(){
+
+function resetarTelaInicialtela2() {
     location.reload();
 }
 
-function recarregarQuizz(){
+function recarregarQuizz() {
     toggleTela2();
-    const remover = document.querySelectorAll('.conteudoTela2 *');
-    for (let i = 0; i < remover.length; i++){
+    const remover = document.querySelectorAll('.conteudoTela2 .conteudoQuizz');
+    document.querySelector('.topoTela2').remove();
+    for (let i = 0; i < remover.length; i++) {
         remover[i].remove();
     }
     selecionarQuizz(quizzid, null);
