@@ -334,6 +334,21 @@
     height: 80%;
 }
 
+.foto-texto:hover img{
+    opacity: 80%;
+}
+
+.foto-texto:hover{
+    cursor: pointer;
+    box-shadow: -2px 2px 6px #574646;
+
+}
+
+
+.foto-texto:hover h2{
+    text-decoration: underline;
+}
+
 .foto-texto > h2{
     width: 100%;
     margin-top: 5px;
@@ -373,6 +388,15 @@
     font-size: 20px;
     font-weight: 400;
     border: none;
+}
+
+.botao-reset:hover{
+    background-color: #ff5950;
+}
+
+.botao-reset:hover, .botaoTelainicial:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /*-------------------------------------------------------------------------Fim da tela 2 -----------------------------------------------------------------------*/
@@ -548,7 +572,13 @@ alerta{
     font-weight: 400;
     border: none;
 }
-.tela-3 button:hover{
+.tela-3 button:not(.botao-voltar-home):hover{
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: #ff5950;
+}
+
+.botao-voltar-home{
     text-decoration: underline;
     cursor: pointer;
 }
