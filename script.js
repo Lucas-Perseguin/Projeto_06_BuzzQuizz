@@ -169,6 +169,16 @@ function selecionado(numPergunta, numResposta) {
 function resetarTelaInicialtela2(){
 
 }
+let newquizz;
+
+function checaresultado(){
+    const resultado = Math.round((acertoss / Quizz.questions.length)*100);
+    for(i = 0; i < Quizz.levels.length; i++){
+        if(resultado => Quizz.levels[i].minValue && resultado <= Quizz.levels[i+1].minValue){
+            newquizz = Quizz.levels.splice(i);
+        }
+    }
+}
 
 function resultadoFinal() {
     const resultado = Math.round((acertoss / Quizz.questions.length)*100);
@@ -178,28 +188,18 @@ function resultadoFinal() {
     divfinal.innerHTML += `<button type="button" onclick="recarregarQuizz()" class="botao-reset">Resetar Quizz</button>
     <button type="button" class="botaoTelainicial" onclick="resetarTelaInicialtela2()">Voltar pra home</button> `
     tituloQuizz.classList.add('resultadoQuizz');
-    if (resultado < 50) {
-        const divp = document.createElement('div');
-        divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[0].title}</p>`
-        const titTexto = document.createElement('div');
-        titTexto.innerHTML += `<img src="${Quizz.levels[0].image}">
-            <p>${Quizz.levels[0].text}</p>`
-        tituloQuizz.appendChild(divp);
-        tituloQuizz.appendChild(titTexto);
-        conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
-        conteudoPagina2.insertAdjacentElement('beforeend', divfinal);
-    } else if (resultado > 50) {
-        const divp = document.createElement('div');
-        divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[1].title}</p>`
-        const titTexto = document.createElement('div');
-        titTexto.innerHTML += `<img src="${Quizz.levels[1].image}">
-            <p>${Quizz.levels[1].text}</p>`
-        tituloQuizz.appendChild(divp);
-        tituloQuizz.appendChild(titTexto);
-        conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
-        conteudoPagina2.insertAdjacentElement('beforeend', divfinal);
-    }
+            const divp = document.createElement('div');
+            divp.innerHTML += `<p>${resultado}% de acerto: ${Quizz.levels[0].title}</p>`
+            const titTexto = document.createElement('div');
+            titTexto.innerHTML += `<img src="${Quizz.levels[0].image}">
+                <p>${Quizz.levels[0].text}</p>`
+            tituloQuizz.appendChild(divp);
+            tituloQuizz.appendChild(titTexto);
+            conteudoPagina2.insertAdjacentElement('beforeend', tituloQuizz);
+            conteudoPagina2.insertAdjacentElement('beforeend', divfinal);
 }
+
+        
 
 function resetarTelaInicialtela2(){
     location.reload();
