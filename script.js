@@ -222,7 +222,9 @@ function recarregarQuizz() {
     toggleTela2();
     const remover = document.querySelectorAll('.conteudoTela2 .conteudoQuizz');
     document.querySelector('.topoTela2').remove();
-    document.querySelector('.resultadoQuizz').remove();
+    if (document.querySelector('.resultadoQuizz') !== null){
+        document.querySelector('.resultadoQuizz').remove();
+    }
     for (let i = 0; i < remover.length; i++) {
         remover[i].remove();
     }
@@ -552,8 +554,7 @@ let acertosControleIgualdadeArray = [];
 function validarNiveisQuizz() {
     acertoControle0 = false;
     acertosControleIgualdadeArray = [];
-    const qtdeNiveis = document.getElementById('qtdeNiveisCriarQuizz').value;
-    const niveis = document.querySelector('.tela-3-3').querySelectorAll('.nivel');
+    const niveis = document.querySelectorAll('.tela-3-3 .nivel');
     let niveisBoolean = false;
     for (let i = 0; i < niveis.length; i++) {
         niveisBoolean = validarNivelQuizz(niveis[i]);
@@ -645,6 +646,14 @@ function validarDescricaoNivel(nivel) {
 }
 
 function finalizarQuizz() {
+    const botao = document.querySelector('.tela-3-3 button');
+    botao.disabled = true;
+    console.log(botao);
+    toggleCarregamento('Criando quizz...');
+    toggleTela3();
+    const tela_3_3 = document.querySelector('.tela-3-3');
+    tela_3_3.classList.toggle('display-tela-3');
+    tela_3_3.classList.toggle('escondido');
     const quizz = {
         title: document.getElementById('tituloCriarQuizz').value,
         image: document.getElementById('urlCriarQuizz').value,
@@ -687,7 +696,6 @@ function finalizarQuizz() {
         };
         quizz.levels.push(nivel);
     }
-    toggleCarregamento('Criando quizz...');
     const post = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizz);
     post.then(telaFinalCriacaoQuizz);
     post.catch(erroEnviarQuizzCriacao);
@@ -700,12 +708,10 @@ function erroEnviarQuizzCriacao(promessa) {
 
 function telaFinalCriacaoQuizz(quizz) {
     toggleCarregamento(null);
+    toggleTela3();
     const tela_3_4 = document.querySelector('.tela-3-4');
-    const tela_3_3 = document.querySelector('.tela-3-3');
     tela_3_4.classList.toggle('escondido');
     tela_3_4.classList.toggle('display-tela-3');
-    tela_3_3.classList.toggle('display-tela-3');
-    tela_3_3.classList.toggle('escondido');
     const quizzElemento = document.createElement('div');
     quizzElemento.setAttribute('data-identifier', 'quizz-card');
     quizzElemento.setAttribute('onclick', `selecionarQuizzCriado(${quizz.data.id})`);
